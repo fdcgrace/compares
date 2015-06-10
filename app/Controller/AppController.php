@@ -44,7 +44,7 @@ class AppController extends Controller {
 
 	public function beforeFilter() {
 		$this->Auth->authorize = 'Controller';
-		$this->Auth->allow('index', 'view', 'conversation', 'sendmessage');
+		$this->Auth->allow('index', 'view', 'conversation', 'sendmessage', 'display');
 		$this->set('loggedIn', $this->Auth->loggedIn());
 		$this->set('currUser', $this->Auth->user());
 
