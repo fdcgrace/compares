@@ -153,7 +153,6 @@
 											<?php 
 												/*echo $this->Html->link(__('Rate Bad'), array('controller' => 'ratings', 'action' => 'bad', $instructor['Instructor']['id']), array('class' => 'button tiny alert round'));*/
 											?>
-								
 								  	<?php  endif; ?>
 								<?php  endif; ?>
 							  		<?php 

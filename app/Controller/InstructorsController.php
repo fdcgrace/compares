@@ -93,8 +93,7 @@ class InstructorsController extends AppController {
                 'approval' => 1
         );
 
-	  	$comments = $this->Inscomment->find('all', array('conditions' => $cond));
-        
+	  	$comments = $this->Inscomment->find('all', array('conditions' => $cond));        
 		//good and bad process code
 		$good = $ratedGood = $ratedBad = $bad = '';
 		foreach ($instructors as $key => $instructor) {

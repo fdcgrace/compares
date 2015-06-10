@@ -94,8 +94,6 @@
         <?php endif; ?> 
     </div>
 
-   
-
     <!-- side ads -->
     <div class="small-3 columns white-text">
 

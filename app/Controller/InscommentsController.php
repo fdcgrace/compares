@@ -1,6 +1,6 @@
 <?php
 class InscommentsController extends AppController {
- 
+  
     public $uses = array('User', 'Site', 'Comment', 'Attribute', 'Instructor', 'Rating', 'Inscomment');
 
     public $paginate = array(
@@ -11,10 +11,8 @@ class InscommentsController extends AppController {
      
     public function beforeFilter() {
         parent::beforeFilter();
-        //$this->Auth->allow('admin_login', 'admin_add', 'add'); 
     }
      
- 
     public function conversation($id = null) {
         $user = $this->Auth->user();
         $commentSes = "";
