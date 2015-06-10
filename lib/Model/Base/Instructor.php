@@ -124,6 +124,28 @@ class Instructor extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'image' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Profile image is required.',
+				'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			/*'extension' => array(
+				//'rule' => array('JPG','jpg','PNG','png','GIF','gif'),
+				'rule' => array(
+						'extension',
+			            array('gif', 'jpeg', 'png', 'jpg')
+		        	),
+				'message' => 'Only jpg, png, and gif file is accepted.',*/
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'update', // Limit validation to 'create' or 'update' operations
+			//),
+		),
 		'education' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),

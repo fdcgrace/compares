@@ -131,7 +131,6 @@ class SitesController extends AppController {
             }else{
             	$this->Session->setFlash(__('The site could not be saved. Only jpg, png, gif extension is allowed. Please, try again.'),'failflash');
             }
-		    
 		}
 	}
 
