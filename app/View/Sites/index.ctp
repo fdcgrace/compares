@@ -119,7 +119,6 @@
 								入会金: <?php echo h($site['Site']['admission_fee']); ?>
 							  	無料体験レッスン: <?php echo h($site['Site']['trial_lesson']);?>
 							  	1レッスンあたりの最安値: <?php echo h($site['Site']['lowest_price']); ?>
-							  	
 							  	</small>
 							値段: 
 							<?php if($site['reviews']): ?>
