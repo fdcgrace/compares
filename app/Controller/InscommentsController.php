@@ -67,13 +67,13 @@ class InscommentsController extends AppController {
     public function sendmessage() {
         $redirect = "";
         if ($this->request->is('post')) {
-            
+                
             if (!$this->request->data['Inscomment']['user_id']) {
                 $this->request->data['Inscomment']['user_id'] = 0;
             }
 
             if (isset($this->request->data['Inscomment']['instructor_id'])) {
-                $redirect = array('controller' => 'instructors', 'action' => 'view', $this->request->data['Inscomment']['instructor_id']);
+                $redirect = array('action' => 'conversation', $this->request->data['Inscomment']['instructor_id']);
             }
 
             $this->Inscomment->create();

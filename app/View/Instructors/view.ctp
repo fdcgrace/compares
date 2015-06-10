@@ -32,9 +32,8 @@
 					<?php 
 						/*echo $this->Html->link(__('Good!（数）'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny round', 'id' => 'goodAction'));*/
 					?>
-					<a href='#' id='badAction' class='button tiny alert round'>Bad!（数）</a>
 					<?php 
-						/*echo $this->Html->link(__('Bad!（数）'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny alert round', 'id' => 'badAction'));*/
+						echo $this->Html->link(__('Bad!（数）'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny alert round', 'id' => 'badAction'));
 					?>
 		
 			<?php  endif; ?>
@@ -43,27 +42,16 @@
 			<h4><small>押したらテキストボックスがポップアップしてコメント出来る</small></h4>
 		</div>
 		<?php if($comments): ?>
-
             <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['instructor_id']): ?>
-                
-                <span style="color: #FFF">Your comment is waiting for approval and will look like this.</span>
                 <div class="panel">
-	                <div class="row">
-		                <div class="small-2 columns">
-		                	<span class="ratings<?php echo $commentSes['Inscomment']['rate'];?>"><?php echo ($commentSes['Inscomment']['rate'] == 1)?'Good':'Bad';?></span>
-		                </div>
-		                <div class="small-10 columns">
-		                	<?php if($commentSes['Inscomment']['message']): ?>
-		                  		<p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
-		                  	<?php endif; ?>
-		                </div>
-		                
-	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
-	                  	<h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
-		            </div>
+                <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
+                <?php if($commentSes['Inscomment']['message']): ?>
+                  <p class="alert-box info radius"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
                 </div>
             <?php endif;?>
-
             <?php foreach($comments as $key => $comment):?>
                 <?php 
                     $val1 = date("Y-m-d H:i:s");
@@ -72,60 +60,37 @@
                     $datetime2 = new DateTime($val2);
                     $getdays = $datetime1->diff($datetime2);
                 ?>
-                
+                <?php //echo ($comment['Inscomment']['good'])?"good":"bad";?>
                 <?php if($key == 0):?>
                     <h5><small>Latest comment: <?php echo $getdays->d;?> Days <?php echo $getdays->h;?> hours <?php echo $getdays->i;?> mins <?php echo $getdays->s;?> secs ago</small></h5>
                 <?php endif; ?>
                 <div class="panel">
-	                <div class="row">
-		                <div class="small-2 columns">
-		                	<span class="ratings<?php echo $comment['Inscomment']['rate'];?>"><?php echo ($comment['Inscomment']['rate'] == 1)?'Good':'Bad';?></span>
-		                </div>
-		                <div class="small-10 columns">
-		                	<?php if($comment['Inscomment']['message']): ?>
-		                  		<p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $comment['Inscomment']['message']; ?></p>
-		                  	<?php endif; ?>
-		                </div>
-		                
-	                  	<h5><small>By: <?php echo (isset($comment['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
-	                  	<h5><small>Created: <?php echo $comment['Inscomment']['created']; ?></small></h5>
-		                <?php if($key > 0):?>
-		                 	 <h5><small>Posted: <?php echo $getdays->d;?> Days <?php echo $getdays->h;?> hours <?php echo $getdays->i;?> mins <?php echo $getdays->s;?> secs ago</small></h5>
-		                <?php endif; ?>
-		            </div>
+                <?php if($comment['Inscomment']['message']): ?>
+                  <p class="alert-box info radius"><?php echo $comment['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($comment['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $comment['Inscomment']['created']; ?></small></h5>
+                <?php if($key > 0):?>
+                  <h5><small>Posted: <?php echo $getdays->d;?> Days <?php echo $getdays->h;?> hours <?php echo $getdays->i;?> mins <?php echo $getdays->s;?> secs ago</small></h5>
+                <?php endif; ?>
                 </div>
                 
             <?php endforeach; ?>
-
         <?php else: ?>
-
             <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['site_id']): ?>
-
                 <div class="panel">
-                <span style="color: #FFF">Your comment is waiting for approval and will look like this.</span>
-                	<div class="row">
-		                <div class="small-2 columns button">
-		                	<span class="ratings<?php echo $commentSes['Inscomment']['rate'];?>"><?php echo ($commentSes['Inscomment']['rate'] == 1)?'Good':'Bad';?></span>
-		                </div>
-		                <div class="small-10 columns">
-		                	<?php if($commentSes['Inscomment']['message']): ?>
-		                  		<p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
-		                  	<?php endif; ?>
-		                </div>
-		                
-	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
-	                  	<h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
-		            </div>
+                <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
+                <?php if($commentSes['Inscomment']['message']): ?>
+                  <p class="alert-box info radius"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
                 </div>
-
             <?php else:?>
-
                 <div class="panel">
                     <h5><small>Write your comment now.</small>
                 </div>
-
             <?php endif; ?>
-
         <?php endif; ?> 
     </div>
 
@@ -165,7 +130,6 @@
                 <div class="small-10 columns">
                     <?php echo $this->Form->input(_('user_id'), array('type' => 'hidden', 'value' => $users['id']));?>
                     <?php echo $this->Form->input(_('instructor_id'), array('type' => 'hidden', 'value' => $instructor['Instructor']['id']));?>
-                    <?php echo $this->Form->input(_('rate'), array('type' => 'hidden', 'id' => 'eval'));?>
                     <?php echo $this->Form->input(_('message'), array('type' => 'textarea', 'placeholder' => 'Type your comment here...', 'label' => false, 'style'=>'color: #000;'));?>
                 </div>
                 <div class="small-2 columns">
@@ -174,7 +138,59 @@
         <!--     </div>
         </div> -->
         </div>
-	<a class="close-reveal-modal" aria-label="Close">x</a>
+    <hr>
+        <?php if($comments): ?>
+            <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['instructor_id']): ?>
+                <div class="panel">
+                <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
+                <?php if($commentSes['Inscomment']['message']): ?>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
+                </div>
+            <?php endif;?>
+            <?php foreach($comments as $key => $comment):?>
+                <?php 
+                    $val1 = date("Y-m-d H:i:s");
+                    $val2 = $comment['Inscomment']['created'];
+                    $datetime1 = new DateTime($val1);
+                    $datetime2 = new DateTime($val2);
+                    $getdays = $datetime1->diff($datetime2);
+                ?>
+                <?php if($key == 0):?>
+                    <h5><small>Latest comment: <?php echo $getdays->d;?> Days <?php echo $getdays->h;?> hours <?php echo $getdays->i;?> mins <?php echo $getdays->s;?> secs ago</small></h5>
+                <?php endif; ?>
+                <div class="panel">
+                <?php if($comment['Inscomment']['message']): ?>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $comment['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($comment['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $comment['Inscomment']['created']; ?></small></h5>
+                <?php if($key > 0):?>
+                  <h5><small>Posted: <?php echo $getdays->d;?> Days <?php echo $getdays->h;?> hours <?php echo $getdays->i;?> mins <?php echo $getdays->s;?> secs ago</small></h5>
+                <?php endif; ?>
+                </div>
+                
+            <?php endforeach; ?>
+        <?php else: ?>
+            <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['site_id']): ?>
+                <div class="panel">
+                <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
+                <?php if($commentSes['Inscomment']['message']): ?>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                <?php endif; ?>
+                  <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
+                  <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
+                </div>
+            <?php else:?>
+                <div class="panel">
+                    <h5><small>Write your comment now.</small>
+                </div>
+            <?php endif; ?>
+        <?php endif; ?> 
+    
+	</div>
 </div>
 
 <!-- js -->
@@ -182,11 +198,5 @@
 	$('#goodAction').click(function() {
 		$('#myModal').foundation('reveal', 'open');
 		$('#myModal').foundation('reveal', 'close');
-		$('#eval').val('1');
-	});
-	$('#badAction').click(function() {
-		$('#myModal').foundation('reveal', 'open');
-		$('#myModal').foundation('reveal', 'close');
-		$('#eval').val('0');
 	});
 </script>
