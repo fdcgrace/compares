@@ -1150,6 +1150,8 @@ select {
 button, .button {
   -webkit-appearance: none;
   -moz-appearance: none;
+    box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
   border-radius: 0;
   border-style: solid;
   border-width: 0;
