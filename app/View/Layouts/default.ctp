@@ -36,7 +36,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			'foundation.js', 
 			'foundation.dropdown.js',
 			'foundation.tooltip.js',
-			'foundation.magellan.js'
+			'foundation.magellan.js',
+			'foundation.reveal.js'
 			)
 		);
 
@@ -60,26 +61,25 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<section class="top-bar-section">
 			 
 			  <ul class="right">
+			  	<li>
+			    	<a href="#"><?php echo $this->Html->link('トップ', array('controller' => 'pages', 'action' => 'display')); ?></a></li>
 			    <li>
-			    	<a href="#"><?php echo $this->Html->link('Sites', array('controller' => 'sites', 'action' => 'index')); ?></a></li>
 			    <li>
-			    	<a href="#"><?php echo $this->Html->link('Instructors', array('controller' => 'instructors', 'action' => 'index')); ?></a></li>
+			    	<a href="#"><?php echo $this->Html->link('サイト', array('controller' => 'sites', 'action' => 'index')); ?></a></li>
+			    <li>
+			    	<a href="#"><?php echo $this->Html->link('講師', array('controller' => 'instructors', 'action' => 'index')); ?></a></li>
 			    <li>
 			  		<a href="#">
 			  		<?php echo $this->Html->link($currUser['name'], array('controller' => 'users', 'action' => 'edit', $currUser['id'])); ?>
 			  		</a>
 			  	</li>
-			    <!-- <li><a href="#">Nav Button</a></li>
-			    <li><a href="#">Nav Button</a></li>
-			    <li><a href="#">Nav Button</a></li>
-			    <li><a href="#">Nav Button</a></li> -->
 			    <?php if ($loggedIn): ?>
 				    <li>
-				    	<a href="#"><?php echo $this->Html->link('Logout', array('controller' => 'users', 'action' => 'logout')); ?></a>
+				    	<a href="#"><?php echo $this->Html->link('ログアウト', array('controller' => 'users', 'action' => 'logout')); ?></a>
 				    </li>
 				<?php else: ?>
 				    <li>
-				    	<a href="#"><?php echo $this->Html->link('Login', array('controller' => 'users', 'action' => 'login')); ?></a>
+				    	<a href="#"><?php echo $this->Html->link('ログイン', array('controller' => 'users', 'action' => 'login')); ?></a>
 				    </li>
 				<?php endif; ?>
 			  </ul>

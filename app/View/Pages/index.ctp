@@ -23,12 +23,12 @@
       <div>
         <h5 class="subheader">気になる講師を探す</h5>
         <p>
-          <?php echo $this->Html->link(_('List of instructors'), array('controller' => 'instructors', 'action' => 'index')); ?></p>
+          <?php echo $this->Html->link(_('講師一覧'), array('controller' => 'instructors', 'action' => 'index')); ?></p>
       </div>
 
       <div>
         <h5 class="subheader">気になるサイトを探す</h5>
-        <p><?php echo $this->Html->link(_('List of sites'), array('controller' => 'sites', 'action' => 'index')); ?></p>
+        <p><?php echo $this->Html->link(_('サイト一覧'), array('controller' => 'sites', 'action' => 'index')); ?></p>
       </div>
     </div>
     <!-- side ads -->

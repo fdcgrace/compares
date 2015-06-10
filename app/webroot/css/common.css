@@ -38,8 +38,8 @@
 
 .gray-text-content {
   margin-bottom: 0.25rem!important;
-  height: 133px;
-  max-height: 133px;
+  height: 155px;
+  max-height: 155px;
   background-color: #D7D7D7;
   border-color: #c7c7c7;
   box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
@@ -90,8 +90,8 @@
 }
 
 .image-gray {
-  height: 133px;
-  max-height: 133px;
+  height: 155px;
+  max-height: 155px;
   background-color: #C8C8C8;
   border-color: #919191;
   box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
@@ -108,4 +108,41 @@
 
 .black-text {
   color:#000;
+}
+.white-text {
+  color:#fff;
+}
+.center-text {
+  text-align: center;
+}
+
+.select-box {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #cccccc;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+  display: block;
+  font-family: inherit;
+  font-size: 0.875rem;
+  height: 2.3125rem;
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: border-color 0.15s linear, background 0.15s linear;
+  -moz-transition: border-color 0.15s linear, background 0.15s linear;
+  -ms-transition: border-color 0.15s linear, background 0.15s linear;
+  -o-transition: border-color 0.15s linear, background 0.15s linear;
+  transition: border-color 0.15s linear, background 0.15s linear;
+}
+
+.pad-right li{
+  padding-right: 5px;
 }
