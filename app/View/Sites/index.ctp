@@ -112,8 +112,8 @@
 						  	}
 						 ?>
 						 <!-- Good or Bad display -->
-						<span class="round label">Good <?php echo (isset($userID) && $cond1 <> true && $ratedGood > 0)?$good." You rate this" : $good ;?></span> 
-						<span class="round alert label">Bad <?php echo (isset($userID) && $cond2 <> true && $ratedBad > 0)?$bad." You rate this" : $bad; ?></span> 
+						<!-- <span class="round label">Good <?php //echo (isset($userID) && $cond1 <> true && $ratedGood > 0)?$good." You rate this" : $good ;?></span> 
+						<span class="round alert label" style="display:none!important;">Bad <?php //echo (isset($userID) && $cond2 <> true && $ratedBad > 0)?$bad." You rate this" : $bad; ?></span>  -->
 							  	<small>Details:
 							  	講師数: <?php echo h($site['Site']['no_teachers']); ?>
 								入会金: <?php echo h($site['Site']['admission_fee']); ?>
@@ -122,23 +122,23 @@
 							  	
 							  	</small>
 							値段: 
-							<?php if($site['reviews']): ?>
-								<span class="warning label">Reviews: <?php echo $site['reviews'];?></span>
-							<?php endif;?>
+							<?php //if($site['reviews']): ?>
+								<!-- <span class="warning label">Reviews: <?php //echo $site['reviews'];?></span> -->
+							<?php //endif;?>
 						</div><!-- end of div medium-10 columns -->			  	
 						<div class="medium-10 columns" style="padding-top:5px;">
 				 			<?php if ($loggedIn): ?>
 							 	<?php if ($cond1 && $cond2): ?>
 										<?php 
-											echo $this->Html->link(__('Rate Good'), array('controller' => 'attributes', 'action' => 'good', $site['Site']['id']), array('class' => 'button tiny round'));
+											/*echo $this->Html->link(__('Rate Good'), array('controller' => 'attributes', 'action' => 'good', $site['Site']['id']), array('class' => 'button tiny round'));*/
 										?>
 										<?php 
-											echo $this->Html->link(__('Rate Bad'), array('controller' => 'attributes', 'action' => 'bad', $site['Site']['id']), array('class' => 'button tiny alert round'));
+											/*echo $this->Html->link(__('Rate Bad'), array('controller' => 'attributes', 'action' => 'bad', $site['Site']['id']), array('class' => 'button tiny alert round'));*/
 										?>
 							  	<?php  endif; ?>
 							<?php  endif; ?>
 						  		<?php 
-						  			echo $this->Html->link(__('Comment'), array('controller' => 'comments', 'action' => 'conversation', $site['Site']['id']), array('class' => 'button tiny success round'));
+						  			/*echo $this->Html->link(__('Comment'), array('controller' => 'comments', 'action' => 'conversation', $site['Site']['id']), array('class' => 'button tiny success round'));*/
 						  		?>
 					  	</div>
 					</div>	  
