@@ -59,20 +59,37 @@ class AppController extends Controller {
 	    $this->set('loggedIn', $this->Auth->loggedIn());
 		$this->set('currUser', $this->Auth->user());
 
-	    $this->gender = array('0' => 'Male', '1' => 'Female');
+	    $this->gender = array('1' => 'Male', '2' => 'Female');
 	    $this->speak_japanese = array('0' => 'Yes', '1' => 'No');
 	    $this->evaluation = array('0' => 'Good', '1' => 'Bad');
 	    $this->role = array( '0' => 'Admin', '1' => 'User');
+
+
+	    $this->set('gender',$this->gender);
+	    $this->set('speak_japanese',$this->speak_japanese);
+	    $this->set('evaluation',$this->evaluation);
+	    $this->set('role',$this->role);
+
 	    $this->sitePath = "../../app/webroot/img/sites/";
 	    $this->sitePathThumb = "../../app/webroot/img/sites/thumbnail/";
 	    /*$this->retrieveSite = "/app/webroot/img/sites/";
 	    $this->retrieveSiteThumb = "/app/webroot/img/sites/thumbnail/";*/
 	    $this->retrieveSite = "/app/webroot/img/sites/";
 	    $this->retrieveSiteThumb = "/app/webroot/img/sites/thumbnail/";
+
+	    $this->insPath = "../../app/webroot/img/instructor/";
+	    $this->insPathThumb = "../../app/webroot/img/instructor/thumbnail/";
+	    $this->retrieveIns = "/app/webroot/img/instructor/";
+	    $this->retrieveInsThumb = "/app/webroot/img/instructor/thumbnail/";
+
 	    $this->set('sitePath', $this->sitePath);
 	    $this->set('sitePathThumb', $this->sitePathThumb);
 	    $this->set('retrieveSite', $this->retrieveSite);
 	    $this->set('retrieveSiteThumb', $this->retrieveSiteThumb);
+	    $this->set('insPath', $this->insPath);
+	    $this->set('insPathThumb', $this->insPathThumb);
+	    $this->set('retrieveIns', $this->retrieveIns);
+	    $this->set('retrieveInsThumb', $this->retrieveInsThumb);
 
 	    //$this->retrieveSite = "http://localhost/comparison-DEV/app/webroot/img/sites/";
 	    //$this->retrieveSite = "http://".compare.fdc-inc.com/app/webroot/img/sites/";

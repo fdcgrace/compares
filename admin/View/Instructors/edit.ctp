@@ -1,9 +1,15 @@
 <div class="instructors form">
-<?php echo $this->Form->create('Instructor'); ?>
+<?php
+echo "<img src='$retrieveInsThumb$img' width='120' height='120'>";
+			echo "<br><br>";
+?>
+<?php echo $this->Form->create('Instructor', array('enctype'=>'multipart/form-data')); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Instructor'); ?></legend>
 	<?php
+		echo $this->Form->input('getimage', array('type'=>'hidden', 'default' => $img));
 		echo $this->Form->input('id');
+		echo $this->Form->input('Profile', array('type'=>'file','name' => 'data[Instructor][image]'));
 		echo $this->Form->input('site_id', array('label'=>'所属サイト Affiliated Site'));
 		echo $this->Form->input('e_name', array('label' => '名前（英語） Name (English)'));
 		echo $this->Form->input('k_name', array('label' => '名前（英語） Name (katakana)'));

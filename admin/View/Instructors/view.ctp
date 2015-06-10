@@ -1,6 +1,7 @@
 <div class="instructors view">
 <h2><?php echo __('Instructor'); ?></h2>
 	<dl>
+		<dt><img src="<?php echo $retrieveInsThumb.$instructor['Instructor']['image']?>"></dt>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($instructor['Instructor']['id']); ?>
@@ -28,7 +29,7 @@
 		</dd>
 		<dt><?php echo __('Gender'); ?></dt>
 		<dd>
-			<?php echo h($instructor['Instructor']['gender']); ?>
+			<?php echo h($instructor['Instructor']['gender'] == 1 ? "Male":"Female" ); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Birthdate'); ?></dt>
@@ -53,7 +54,7 @@
 		</dd>
 		<dt><?php echo __('Speak Japanese'); ?></dt>
 		<dd>
-			<?php echo h($instructor['Instructor']['speak_japanese']); ?>
+			<?php echo h($instructor['Instructor']['speak_japanese'] == 0 ? "Yes":"No" ); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Language'); ?></dt>
@@ -73,7 +74,7 @@
 		</dd>
 		<dt><?php echo __('Evaluation'); ?></dt>
 		<dd>
-			<?php echo h($instructor['Instructor']['evaluation']); ?>
+			<?php echo h($instructor['Instructor']['evaluation'] == 0 ? "Good":"Bad"); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Eval Comment'); ?></dt>

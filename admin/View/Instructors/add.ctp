@@ -1,5 +1,5 @@
 <div class="instructors form">
-<?php echo $this->Form->create('Instructor'); ?>
+<?php echo $this->Form->create('Instructor', array('enctype'=>'multipart/form-data')); ?>
 	<fieldset>
 		<legend><?php echo __('Add Instructor'); ?></legend>
 	<?php
@@ -11,6 +11,7 @@
                         'options'=> $gender));
 		echo $this->Form->input('birth', array('label' => '生年月日 Date of Birth', 'id' => 'datepicker', 'name' => 'data[Instructor][birthdate]', 'class' => 'readonly', 'default' => $birthdate));
 		echo $this->Form->input('age', array('label' => '年齢 Age', 'id' => 'age', 'class' => 'readonly', 'default' => $age));
+		echo $this->Form->input('Profile', array('type'=>'file','name' => 'data[Instructor][image]'));
 		echo $this->Form->input('educ', array('label' => '最終学歴 Latest Education Background'));
 		echo $this->Form->input('course', array('label' => '学科 Course Of Study'));
 		echo $this->Form->input('speak_japanese', array('label' => '日本語対応 Can speak Japanese',  'type'=>'select',
