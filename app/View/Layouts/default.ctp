@@ -30,16 +30,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		//echo $this->Html->css('cake.generic');
-		echo $this->Html->css(array('foundation', 'normalize'));
+		echo $this->Html->css(array('foundation', 'normalize', 'common'));
 		echo $this->Html->script(array(
-			'vendor/jquery.js', 
-			'foundation/foundation.js', 
-			'foundation/foundation.dropdown.js',
-			'foundation/foundation.tooltip.js',
-			'foundation/foundation.magellan.js'
+			'jquery.js', 
+			'foundation.js', 
+			'foundation.dropdown.js',
+			'foundation.tooltip.js',
+			'foundation.magellan.js'
 			)
 		);
-echo $scripts_for_layout;
+
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

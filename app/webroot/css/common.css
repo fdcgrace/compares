@@ -1,0 +1,111 @@
+.black-content {
+  padding-left: 1.5rem!important; 
+  background-color: #333333; 
+  border-color: #000000;  
+  border-radius: 7pt;  
+  margin-top: 15px;  
+  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.white-content {
+  padding-left: 1.5rem!important;
+  background-color: #FFFFFF;
+  border-color: #E7E7E7;
+  box-shadow: 9px 7px 22px 0 rgba(0,0,0,0.2);
+  margin-top: 15px;
+  border-radius: 7pt;  
+  margin-top: 15px;  
+  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.gray-text-content {
+  margin-bottom: 0.25rem!important;
+  height: 133px;
+  max-height: 133px;
+  background-color: #D7D7D7;
+  border-color: #c7c7c7;
+  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.white-text-content {
+  background-color: #FFFFFF; 
+  border-color: #FFFFFF;
+}
+
+.white-text-content-shadow {
+  background-color: #FFFFFF; 
+  border-color: #FFFFFF;  
+  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.mini-titlebar {
+  color:#fff; 
+  background-color: #666666; 
+  border-color: #000;
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.image-gray {
+  height: 133px;
+  max-height: 133px;
+  background-color: #C8C8C8;
+  border-color: #919191;
+  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
+.black-text {
+  color:#000;
+}

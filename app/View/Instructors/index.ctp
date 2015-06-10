@@ -1,4 +1,4 @@
-<div class="row alert-box warning" style="padding-left: 1.5rem!important; background-color: #333333; border-color: #000000;  border-radius: 7pt;  margin-top: 15px;  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);"> 
+<div class="row black-content"> 
 
 <header>
 <div class="row">
@@ -10,7 +10,7 @@
 <hr>
 <div class="row">
 	<div class="large-12 columns ">
-	  <div class="panel alert-box info radius" style="background-color: #FFFFFF; border-color: #FFFFFF;">
+	  <div class="panel white-text-content">
 	  	<div class="large-6 columns" style="float:left">
 	    	<h5>List of Intructors</h5>
 	  	</div>
@@ -48,13 +48,13 @@
 		<?php foreach ($instructors as $instructor): ?>
 		
 			<div class="row">
-			  	<div class="small-11 small-centered columns alert-box info radius" style="background-color: #FFFFFF; border-color: #FFFFFF;  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);">
-					<h4 class="alert-box" style="color:#fff; background-color: #666666; border-color: #000;">Teacher: <?php echo $instructor['Instructor']['e_name']; ?></h4>
-						<h5><small style="color:#000;">Assigned Online School: <?php echo $instructor['Site']['site_name']; ?></small></h5>
+			  	<div class="small-11 small-centered columns white-text-content-shadow">
+					<h4 class="mini-titlebar">Teacher: <?php echo $instructor['Instructor']['e_name']; ?></h4>
+						<h5><small class="black-text">Assigned Online School: <?php echo $instructor['Site']['site_name']; ?></small></h5>
 
 					<?php echo $this->Html->link(_('Site info'), array('controller' => 'sites', 'action' => 'view', $instructor['Site']['id'])); ?>	
-						<h5><small style="color:#000;">Katakana Name: <?php echo $instructor['Instructor']['k_name']; ?></small></h5>
-						<h5><small style="color:#000;">Language: <?php echo $instructor['Instructor']['language']; ?></small></h5>
+						<h5><small class="black-text">Katakana Name: <?php echo $instructor['Instructor']['k_name']; ?></small></h5>
+						<h5><small class="black-text">Language: <?php echo $instructor['Instructor']['language']; ?></small></h5>
 						
 						<?php echo $this->Html->link(__("More info"), array('action' => 'view', $instructor['Instructor']['id'])); ?>
 

@@ -1,5 +1,4 @@
-<div class="row alert-box info radius" style="padding-left: 1.5rem!important; background-color: #FFFFFF; border-color: #E7E7E7; box-shadow: 9px 7px 22px 0 rgba(0,0,0,0.2);margin-top: 15px;border-radius: 7pt
-"> 
+<div class="row white-content"> 
 
 <header>
 <div class="row">
@@ -47,13 +46,11 @@
 	<?php endif; ?>
 	<li>
 		<?php foreach ($sites as $site): ?>
-		
 			<div class="row">
-				<!-- <div class="medium-2 columns "><a class="th" href="#"><img src="../compare/app/webroot/img/sites/<?php //echo $site['Site']['site_image']?>"></a></div> -->
-				<div class="medium-2 columns alert-box" style="height: 133px; max-height: 133px; background-color: #C8C8C8; border-color: #919191;  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);">
+				<div class="medium-2 columns image-gray">
 					<img src="/app/webroot/img/sites/<?php echo $site['Site']['site_image']?>" style="max-height: 105px;">
 				</div><!-- end of div medium-2 columns -->	
-			  	<div class="medium-10 columns alert-box secondary" style="margin-bottom: 0.25rem!important; height: 133px; max-height: 133px; background-color: #D7D7D7; border-color: #c7c7c7;  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);">
+			  	<div class="medium-10 columns gray-text-content">
 					<h5><?php echo $this->Html->link(__($site['Site']['site_name']), array('action' => 'view', $site['Site']['id'])); ?></h5>
 					<a href='#'>Url: <?php echo h($site['Site']['site_url_link']); ?></a>
 								  
@@ -101,29 +98,19 @@
 						<?php endif;?>
 					</div><!-- end of div medium-10 columns -->			  	
 					<div class="medium-10 columns" style="padding-top:5px;">
-				  	<!-- <ul class="inline-list" style="margin-top: 1.25rem;"> -->
-					
 			 			<?php if ($loggedIn): ?>
 						 	<?php if ($cond1 && $cond2): ?>
-							 	<!-- <li> -->
 									<?php 
 										echo $this->Html->link(__('Rate Good'), array('controller' => 'attributes', 'action' => 'good', $site['Site']['id']), array('class' => 'button tiny round'));
 									?>
-								<!-- </li>
-								<li> -->
 									<?php 
 										echo $this->Html->link(__('Rate Bad'), array('controller' => 'attributes', 'action' => 'bad', $site['Site']['id']), array('class' => 'button tiny alert round'));
 									?>
-								<!-- </li> -->
 						  	<?php  endif; ?>
 						<?php  endif; ?>
-					  	<!-- <li> -->
 					  		<?php 
 					  			echo $this->Html->link(__('Comment'), array('controller' => 'comments', 'action' => 'conversation', $site['Site']['id']), array('class' => 'button tiny success round'));
-
-					  		?> 
-					<!--   	</li>
-				  	</ul> -->
+					  		?>
 				  	</div>
 				</div>	  
 			
