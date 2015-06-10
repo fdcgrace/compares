@@ -144,7 +144,7 @@
                 <div class="panel">
                 <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
                 <?php if($commentSes['Inscomment']['message']): ?>
-                  <p class="alert-box info radius"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
                 <?php endif; ?>
                   <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
                   <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
@@ -163,7 +163,7 @@
                 <?php endif; ?>
                 <div class="panel">
                 <?php if($comment['Inscomment']['message']): ?>
-                  <p class="alert-box info radius"><?php echo $comment['Inscomment']['message']; ?></p>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $comment['Inscomment']['message']; ?></p>
                 <?php endif; ?>
                   <h5><small>By: <?php echo (isset($comment['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
                   <h5><small>Created: <?php echo $comment['Inscomment']['created']; ?></small></h5>
@@ -178,7 +178,7 @@
                 <div class="panel">
                 <span style="color: #FF0000">Your comment is waiting for approval and will look like this.</span>
                 <?php if($commentSes['Inscomment']['message']): ?>
-                  <p class="alert-box info radius"><?php echo $commentSes['Inscomment']['message']; ?></p>
+                  <p class="alert-box info radius" style="word-wrap: break-word;"><?php echo $commentSes['Inscomment']['message']; ?></p>
                 <?php endif; ?>
                   <h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
                   <h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
