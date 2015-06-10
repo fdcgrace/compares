@@ -60,12 +60,12 @@ class UsersController extends AppController {
             foreach($this->params['named'] as $param_name => $value){
                 if(!in_array($param_name, array('page','sort','direction','limit'))){
                     if($param_name == "Search"){
-                        $conditions['OR'] = array(
-                            array('User.username LIKE' => '%' . $value . '%'),
-                            array('User.email LIKE' => '%' . $value . '%'),                            
-                        );
-                        $conditions['AND'] = array(
-                            array('status' => '1')
+                        $conditions = array(
+                            'OR' => array(
+                                array('User.username LIKE' => '%' . $value . '%'),
+                                array('User.email LIKE' => '%' . $value . '%')
+                                ),
+                            'AND' => array('User.status' => 1)
                         );
                     } else {
                         $conditions['Site.'.$param_name] = $value; 
@@ -74,7 +74,7 @@ class UsersController extends AppController {
                 }
             }
         }
-
+        if(empty($conditions))  $conditions = array('User.status'=> 1);
         $this->User->recursive = 0;
 
         $this->paginate = array(

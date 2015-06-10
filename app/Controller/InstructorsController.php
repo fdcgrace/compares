@@ -51,23 +51,22 @@ class InstructorsController extends AppController {
 			foreach($this->params['named'] as $param_name => $value){
 				if(!in_array($param_name, array('page','sort','direction','limit'))){
 					if($param_name == "Search"){
-						$conditions['OR'] = array(
-							array('Instructor.e_name LIKE' => '%' . $value . '%'),
-							array('Instructor.k_name LIKE' => '%' . $value . '%'),
-							array('Instructor.speak_japanese LIKE' => '%' . $value . '%')
+						$conditions = array(
+							'OR' => array(
+								array('Instructor.e_name LIKE' => '%' . $value . '%'),
+								array('Instructor.k_name LIKE' => '%' . $value . '%'),
+								array('Instructor.speak_japanese LIKE' => '%' . $value . '%')
+								),
+							'AND' => array('Instructor.del_flag' => 1)
 						);
-						$conditions['AND'] = array(
-                            array('Instructor.del_flag' => 1)
-                        );
 					} else {
 						$conditions['Instructor.'.$param_name] = $value; 
 					}					
 					$this->request->data['Filter'][$param_name] = $value;
 				}
 			}
-			$conditions = array('Instructor.del_flag'=> 1);
 		}
-		var_dump($conditions);
+		if(empty($conditions))  $conditions = array('Instructor.del_flag'=> 1);
 		$this->Instructor->recursive = 0;
 
 		$this->paginate = array(

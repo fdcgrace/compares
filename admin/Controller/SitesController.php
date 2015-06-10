@@ -43,12 +43,14 @@ class SitesController extends AppController {
 			foreach($this->params['named'] as $param_name => $value){
 				if(!in_array($param_name, array('page','sort','direction','limit'))){
 					if($param_name == "Search"){
-						$conditions['OR'] = array(
-							array('Site.site_name LIKE' => '%' . $value . '%'),
-							array('Site.company_name LIKE' => '%' . $value . '%'),
-							array('Site.site_url_display LIKE' => '%' . $value . '%'),
-							array('Site.site_url_link LIKE' => '%' . $value . '%'),
-							array('Site.del_flag'=> 1)
+						$conditions = array(
+							'OR' => array(
+								array('Site.site_name LIKE' => '%' . $value . '%'),
+								array('Site.company_name LIKE' => '%' . $value . '%'),
+								array('Site.site_url_display LIKE' => '%' . $value . '%'),
+								array('Site.site_url_link LIKE' => '%' . $value . '%')
+								),
+							'AND' => array('Site.del_flag'=> 1)
 						);
 					} else {
 
@@ -56,11 +58,9 @@ class SitesController extends AppController {
 					}					
 					$this->request->data['Filter'][$param_name] = $value;
 				}
-
 			}
-			$conditions = array('Site.del_flag'=> 1);
 		}
-
+		if(empty($conditions))  $conditions = array('Site.del_flag'=> 1);
 		$this->Site->recursive = 0;
 
 		$this->paginate = array(
