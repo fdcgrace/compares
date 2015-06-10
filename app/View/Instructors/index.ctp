@@ -1,4 +1,4 @@
-<div class="row alert-box warning" style="padding-left: 1.5rem!important; background-color: #333333; border-color: #000000;"> 
+<div class="row alert-box warning" style="padding-left: 1.5rem!important; background-color: #333333; border-color: #000000;  border-radius: 7pt;  margin-top: 15px;  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);"> 
 
 <header>
 <div class="row">
@@ -7,7 +7,7 @@
   </div>
 </div>
 </header>
-<br>
+<hr>
 <div class="row">
 	<div class="large-12 columns ">
 	  <div class="panel alert-box info radius" style="background-color: #FFFFFF; border-color: #FFFFFF;">
@@ -48,7 +48,7 @@
 		<?php foreach ($instructors as $instructor): ?>
 		
 			<div class="row">
-			  	<div class="small-11 small-centered columns alert-box info radius" style="background-color: #FFFFFF; border-color: #FFFFFF;">
+			  	<div class="small-11 small-centered columns alert-box info radius" style="background-color: #FFFFFF; border-color: #FFFFFF;  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);">
 					<h4 class="alert-box" style="color:#fff; background-color: #666666; border-color: #000;">Teacher: <?php echo $instructor['Instructor']['e_name']; ?></h4>
 						<h5><small style="color:#000;">Assigned Online School: <?php echo $instructor['Site']['site_name']; ?></small></h5>
 
@@ -130,7 +130,7 @@
 </ul>
 
 </div>
-<div class="row"> 
+<div class="pagination-centered">
 	<p>
 		<?php
 			echo $this->Paginator->counter(array(
@@ -138,14 +138,12 @@
 			));
 		?>  
 	</p>
-	<div class="paging">
-		<?php
-			echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-			echo $this->Paginator->numbers(array('separator' => ''));
-			echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-		?>
-	</div>
-
+	
+	<ul class="pagination">
+		<li class="arrow unavailable"><?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?></li>
+		<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+		<li class="arrow"><?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?></li>
+	</ul>
 </div>
 
 

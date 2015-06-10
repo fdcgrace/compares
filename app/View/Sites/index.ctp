@@ -1,4 +1,5 @@
-<div class="row alert-box info radius" style="padding-left: 1.5rem!important"> 
+<div class="row alert-box info radius" style="padding-left: 1.5rem!important; background-color: #FFFFFF; border-color: #E7E7E7; box-shadow: 9px 7px 22px 0 rgba(0,0,0,0.2);margin-top: 15px;border-radius: 7pt
+"> 
 
 <header>
 <div class="row">
@@ -7,7 +8,7 @@
   </div>
 </div>
 </header>
-<br>
+<hr>
 <div class="row">
 	<div class="large-12 columns ">
 	  <div class="panel alert-box">
@@ -49,10 +50,10 @@
 		
 			<div class="row">
 				<!-- <div class="medium-2 columns "><a class="th" href="#"><img src="../compare/app/webroot/img/sites/<?php //echo $site['Site']['site_image']?>"></a></div> -->
-				<div class="medium-2 columns alert-box" style="height: 133px; max-height: 133px;">
+				<div class="medium-2 columns alert-box" style="height: 133px; max-height: 133px; background-color: #C8C8C8; border-color: #919191;  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);">
 					<img src="/app/webroot/img/sites/<?php echo $site['Site']['site_image']?>" style="max-height: 105px;">
 				</div><!-- end of div medium-2 columns -->	
-			  	<div class="medium-10 columns alert-box secondary" style="margin-bottom: 0.25rem!important; height: 133px; max-height: 133px;">
+			  	<div class="medium-10 columns alert-box secondary" style="margin-bottom: 0.25rem!important; height: 133px; max-height: 133px; background-color: #D7D7D7; border-color: #c7c7c7;  box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);">
 					<h5><?php echo $this->Html->link(__($site['Site']['site_name']), array('action' => 'view', $site['Site']['id'])); ?></h5>
 					<a href='#'>Url: <?php echo h($site['Site']['site_url_link']); ?></a>
 								  
@@ -133,7 +134,7 @@
 </ul>
 
 </div>
-<div class="row"> 
+<div class="pagination-centered">
 	<p>
 		<?php
 			echo $this->Paginator->counter(array(
@@ -141,14 +142,12 @@
 			));
 		?>  
 	</p>
-	<div class="paging">
-		<?php
-			echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-			echo $this->Paginator->numbers(array('separator' => ''));
-			echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-		?>
-	</div>
-
+	
+	<ul class="pagination">
+		<li class="arrow unavailable"><?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?></li>
+		<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+		<li class="arrow"><?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?></li>
+	</ul>
 </div>
 
 

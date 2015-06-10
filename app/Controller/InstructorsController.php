@@ -66,7 +66,7 @@ class InstructorsController extends AppController {
 				}
 			}
 		}
-		if(empty($conditions))  $conditions = array('Instructor.del_flag'=> 1);
+		if(empty($conditions))  $conditions = array('Instructor.del_flag' => 1);
 		$this->Instructor->recursive = 0;
 
 		$this->paginate = array(

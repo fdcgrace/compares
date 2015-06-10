@@ -1,4 +1,4 @@
-<div class="row alert-box info radius" style="padding-left: 1.5rem!important">
+<div class="row alert-box info radius" style="padding-left: 1.5rem!important;margin-top: 15px; border-radius: 7pt;box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);">
     <div class="row" >
         <div class="small-2 columns"><img src="/app/webroot/img/sites/<?php echo $sites['Site']['site_image']?>"></div>
         <div class="small-10 columns">
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    
+    <hr>
         <!-- <div class="small-2 columns"></div>
         <div class="small-10 columns"> -->
         <div class="row">
@@ -32,6 +32,7 @@
         <!--     </div>
         </div> -->
         </div>
+    <hr>
         <?php if($comments): ?>
             <?php if(isset($sessionCheck) && $sites['Site']['id'] == $commentSes['Comment']['site_id']): ?>
                 <div class="panel">

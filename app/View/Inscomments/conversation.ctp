@@ -1,4 +1,4 @@
-<div class="row alert-box warning radius" style="padding-left: 1.5rem!important; background-color: #FF944D;">
+<div class="row alert-box warning radius" style="padding-left: 1.5rem!important; background-color: #FF944D;margin-top: 15px; border-radius: 7pt;box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);">
     <div class="row" >
         
         <div class="small-10 columns">
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    
+    <hr>
         <!-- <div class="small-2 columns"></div>
         <div class="small-10 columns"> -->
         <div class="row">
@@ -30,6 +30,7 @@
         <!--     </div>
         </div> -->
         </div>
+    <hr>
         <?php if($comments): ?>
             <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['instructor_id']): ?>
                 <div class="panel">
