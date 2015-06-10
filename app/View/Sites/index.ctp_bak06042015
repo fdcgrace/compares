@@ -1,0 +1,167 @@
+<div class="row">
+
+<header>
+<div class="row">
+  <div class="large-12 column">
+    <img src="http://placehold.it/1500x400&text=[stuff and img]">
+  </div>
+</div>
+</header>
+<br>
+
+<div class="row">
+<div class="large-12 columns">
+  <div class="panel">
+    <h1>List of sites</h1>
+  </div>
+</div>
+</div>
+	<?php foreach ($sites as $site): ?>
+	<div class="panel" style="background:#EFEFEE;">
+		<div class="row">
+			<div class="medium-2 columns "><a class="th" href="#"><img src="../app/webroot/img/sites/<?php echo $site['Site']['site_image']?>"></a></div>
+		  	<div class="medium-10 columns">
+		  		<div class="panel callout radius">
+		  			<div class="row">
+			  			<div class = "large-6 columns" >
+							 <h5><?php echo $this->Html->link(__($site['Site']['site_name']), array('action' => 'view', $site['Site']['id'])); ?></h5>
+							 <p>Url: <a href='#'><?php echo h($site['Site']['site_url_link']); ?></a></p>
+							  
+							 <?php 
+						  		$good = $ratedGood = $ratedBad = $bad = '';
+						  		$cond2 = $cond1 = true;
+							  	foreach ($attributes as $val) {
+							  		$siteID = $site['Site']['id'];
+							  		$attriSID = $val['Attribute']['site_id'];
+							  		$attriUID = $val['Attribute']['user_id'];
+							  		$attriGood = $val['Attribute']['good'];
+							  		$attriBad = $val['Attribute']['bad'];
+								  	if ($attriSID == $siteID) {
+								  		
+								  		if(isset($userID) && $attriUID == $userID) {
+											$ratedGood = $attriGood;
+											$ratedBad = $attriBad;
+								  			$cond1 = $cond2 = false;
+								  		}
+								  		
+								  		$good = $good + $attriGood;
+								  		
+								  		$bad = $bad + $attriBad;
+								  	}
+							  	}
+							  	if($good == 0) {
+							  		$good = "";
+							  	}
+							  	if($bad == 0) {
+							  		$bad = "";
+							  	}
+							 ?>
+
+							<span class="round label">Good <?php echo (isset($userID) && $cond1 <> true && $ratedGood > 0)?$good." You rate this" : $good ;?></span> 
+							<span class="round alert label">Bad <?php echo (isset($userID) && $cond2 <> true && $ratedBad > 0)?$bad." You rate this" : $bad; ?></span> 
+					  	</div>
+					  	<div class = "large-6 columns " >
+						  	<h4><small>Details:</small></h4>
+						  	<h4><small>講師数: <?php echo h($site['Site']['no_teachers']); ?></small><h4>
+						  	<h4><small>入会金: <?php echo h($site['Site']['admission_fee']); ?><h4>
+						  	<h4><small>値段: <h4>
+					  
+	  					</div>
+					</div>
+				</div>
+			  		<!-- <div class="row">
+					  <div class="large-4 columns">
+					  	<ul class="vcard" style="background:#ecfaff;">
+							<li class="fn">事業者名: <?php //echo h($site['Site']['company_name']); ?></li>
+							<li class="fn">サービス開始時期: </li>
+							<li class="fn">累計会員数: 
+							<li class="fn">講師数: <?php //echo h($site['Site']['no_teachers']); ?>
+							<li class="fn">無料体験レッスン: <?php //echo h($site['Site']['trial_lesson']); ?>
+							<li class="fn">事業者名: <?php //echo h($site['Site']['company_name']); ?></li>
+						    <li class="fn">サービス開始時期: </li>
+						    <li class="fn">累計会員数: </li>
+						    <li class="fn">講師数: <?php //echo h($site['Site']['no_teachers']); ?></li>
+						    <li class="fn">無料体験レッスン: <?php //echo h($site['Site']['trial_lesson']); ?></li>
+						    <li class="fn">教材数: </li>
+						    <li class="fn">入会金: <?php //echo h($site['Site']['admission_fee']); ?></li>
+						    <li class="fn">料金プラン（税込み）: </li>
+						    <li class="fn">受講可能時間: <?php //echo h($site['Site']['lesson_time']); ?></li>
+						    <li class="fn">1レッスンあたりの最安値: <?php //echo h($site['Site']['lowest_price']); ?></li>
+						    <li class="fn">対応コース: </li>
+						    <li class="fn">予約可能時間: </li>
+						    <li class="fn">キャンセル時間: </li>
+						    <li class="fn">法人導入: </li>
+						    <li class="fn">支払い方法: </li>
+						    <li class="fn">特徴: </li>
+						    <li class="fn">初心者にオススメするポイント: </li>
+						</ul>
+					  </div> -->
+					 <!--  <div class="large-8 columns">
+					    <ul class="pricing-table">
+						  <li class="title">Standard</li>
+						  <li class="price">値段: $99.99</li>
+						  <li class="description">An awesome description</li>
+						  <li class="cta-button"><a class="button" href="#">Enroll Now</a></li>
+						</ul>
+					  </div> -->
+							<ul class="inline-list" style="margin-top: 1.25rem;">
+					 	<?php if ($loggedIn): ?>
+				 			
+						 	<?php if ($cond1 && $cond2): ?>
+							
+							 	<li>
+									<?php 
+										echo $this->Html->link(__('Rate Good'), array('controller' => 'attributes', 'action' => 'good', $site['Site']['id']), array('class' => 'button tiny success'));
+									?>
+								</li>
+								<li>
+								<?php 
+									echo $this->Html->link(__('Rate Bad'), array('controller' => 'attributes', 'action' => 'bad', $site['Site']['id']), array('class' => 'button tiny alert'));
+								?>
+								</li>
+						  	
+						  	<?php  endif; ?>
+						<?php  endif; ?>
+							  	<li>
+							  		<?php 
+							  			echo $this->Html->link(__('Comment'), array('controller' => 'comments', 'action' => 'conversation', $site['Site']['id']), array('class' => 'button tiny info'));
+							  		?> 
+							  	</li>
+						  	</ul>
+				<!-- </div> -->
+			</div>	  
+		</div>
+	</div>
+  	<?php endforeach; ?>
+</div>
+<div class="row"> 
+	<p>
+		<?php
+			echo $this->Paginator->counter(array(
+			'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+			));
+		?>  
+	</p>
+	<div class="paging pagination-centered">
+		<ul class="pagination" role="menubar" aria-label="Pagination">
+		<li class="arrow">
+			<a href="">
+				<?php echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled')); ?>
+			</a>
+		</li>
+			
+		<li><a href=""><?php echo $this->Paginator->numbers(array('separator' => '')); ?></a></li>
+		<li class="arrow">
+			<a href="">
+				<?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?>
+			</a>
+		</li>
+		
+		</ul>
+	</div>
+
+</div>
+
+  
+    
+

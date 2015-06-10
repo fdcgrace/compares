@@ -1,0 +1,94 @@
+<div class="row alert-box warning" style="padding-left: 1.5rem!important"> 
+
+<header>
+<div class="row">
+  <div class="large-12 column">
+    <img src="http://placehold.it/1500x400&text=[stuff and img]">
+  </div>
+</div>
+</header>
+<br>
+<div class="row">
+	<div class="large-12 columns ">
+	  <div class="panel alert-box info radius">
+	  	<div class="large-6 columns" style="float:left">
+	    	<h5>List of Intructors</h5>
+	  	</div>
+	    <div class="large-6 columns" style="float:right">
+	    		<?php echo $this->Html->link(_('List of sites'), array('controller' => 'sites', 'action' => 'index')); ?>
+	    </div>
+		<?php 
+			$base_url = array('controller' => 'instructors', 'action' => 'index');
+	    	echo $this->Form->create("Filter",array('url' => $base_url, 'class' => 'filter')); 
+	    ?>
+	    <div class="row ">
+	    	<div class="large-6 columns" style="float:none">
+		      	<div class="row collapse postfix-round">
+			        <div class="small-9 columns">
+			        	<?php 
+			        		echo $this->Form->input("Search", array('label' => false, 'placeholder' => 'Search instructors here...'));
+			        	?>
+			        	<!-- <input type="text" placeholder="Search sites here..."> -->
+			        </div>
+			        <div class="small-3 columns">
+			        	<?php echo $this->Form->submit("Go", array("class" => "button postfix")); ?>
+			        </div>
+		      	</div>
+	    	</div>
+	  	</div>
+	  </div>
+	</div>
+</div>
+
+<ul class="side-nav ">
+	<?php if (!$instructors): ?>
+	<li>Search result found zero</li>
+	<?php endif; ?>
+	<li>
+		<?php foreach ($instructors as $instructor): ?>
+		
+			<div class="row">
+				<!-- <div class="medium-2 columns "><a class="th" href="#"><img src="../compare/app/webroot/img/sites/<?php //echo $site['Site']['site_image']?>"></a></div> -->
+						
+			  		<div class="small-11 small-centered columns alert-box info radius" >
+			  			<h4 class="alert-box" style="color:#fff;">Teacher: <?php echo $instructor['Instructor']['e_name']; ?></h4>
+						<h5><small style="color:#000;">Assigned Online School: <?php echo $instructor['Site']['site_name']; ?></small></h5>
+						<?php echo $this->Html->link(_('Site info'), array('controller' => 'sites', 'action' => 'view', $instructor['Site']['id'])); ?>	
+						<h5><small style="color:#000;">Katakana Name: <?php echo $instructor['Instructor']['k_name']; ?></small></h5>
+						<h5><small style="color:#000;">Language: <?php echo $instructor['Instructor']['language']; ?></small></h5>
+						
+						<?php echo $this->Html->link(__("More info"), array('action' => 'view', $instructor['Instructor']['id'])); ?>
+					 
+					</div><!-- end of div medium-10 columns -->			  	
+					
+				</div>	  
+			
+	
+	  	<?php endforeach; ?>
+	</div>
+	</li>
+</ul>
+
+</div>
+<div class="row"> 
+	<p>
+		<?php
+			echo $this->Paginator->counter(array(
+			'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+			));
+		?>  
+	</p>
+	<div class="paging">
+		<?php
+			echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
+			echo $this->Paginator->numbers(array('separator' => ''));
+			echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
+		?>
+	</div>
+
+</div>
+
+
+  
+    
+

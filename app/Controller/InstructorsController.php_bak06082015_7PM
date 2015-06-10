@@ -1,0 +1,313 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * Instructors Controller
+ *
+ * @property Instructor $Instructor
+ * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
+ */
+class InstructorsController extends AppController {
+
+/**
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator', 'Session');
+	public $uses = array('Instructor', 'Site', 'Attribute', 'Comment');
+ 
+
+/**
+ * index method
+ *
+ * @return void
+ */
+
+	
+	public function index() {
+
+		/*$conditions = "";
+
+		//search code
+		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])){
+			$filter_url['controller'] = $this->request->params['controller'];
+			$filter_url['action'] = $this->request->params['action'];
+			$filter_url['page'] = 1;
+			foreach($this->data['Filter'] as $name => $value){
+				if($value){
+					$filter_url[$name] = urlencode($value);
+				}
+			}
+			return $this->redirect($filter_url);
+
+		} else {
+			foreach($this->params['named'] as $param_name => $value){
+				if(!in_array($param_name, array('page','sort','direction','limit'))){
+					if($param_name == "Search"){
+						$conditions['OR'] = array(
+							array('Instructor.e_name LIKE' => '%' . $value . '%'),
+							array('Instructor.k_name LIKE' => '%' . $value . '%'),
+							array('Instructor.speak_japanese LIKE' => '%' . $value . '%'),
+						);
+					} else {
+						$conditions['Instructor.'.$param_name] = $value; 
+					}					
+					$this->request->data['Filter'][$param_name] = $value;
+				}
+			}
+		}
+
+		$this->Instructor->recursive = 0;
+
+		$this->paginate = array(
+            'limit' => 10,
+            'order' => array('Instructor.created' => 'asc' ),
+            'conditions' => $conditions
+        );
+
+        $instructors = $this->paginate('Instructor');
+
+		$this->set('instructors', $instructors);
+*/
+		//initialize variable
+		$attrib = $this->Attribute->find('all');
+		$result = array();
+		$uID = '';
+		$conditions = "";
+
+		//search code
+		if(($this->request->is('post') || $this->request->is('put')) && isset($this->data['Filter'])){
+			$filter_url['controller'] = $this->request->params['controller'];
+			$filter_url['action'] = $this->request->params['action'];
+			$filter_url['page'] = 1;
+			foreach($this->data['Filter'] as $name => $value){
+				if($value){
+					$filter_url[$name] = urlencode($value);
+				}
+			}
+			return $this->redirect($filter_url);
+
+		} else {
+			foreach($this->params['named'] as $param_name => $value){
+				if(!in_array($param_name, array('page','sort','direction','limit'))){
+					if($param_name == "Search"){
+						$conditions['OR'] = array(
+							array('Instructor.e_name LIKE' => '%' . $value . '%'),
+							array('Instructor.k_name LIKE' => '%' . $value . '%'),
+							array('Instructor.speak_japanese LIKE' => '%' . $value . '%'),
+						);
+					} else {
+						$conditions['Site.'.$param_name] = $value; 
+					}					
+					$this->request->data['Filter'][$param_name] = $value;
+				}
+			}
+		}
+
+		$this->Site->recursive = 0;
+
+		$this->paginate = array(
+            'limit' => 10,
+            'order' => array('Instructor.id' => 'asc' ),
+            'conditions' => $conditions
+        );
+
+        $instructors = $this->paginate('Instructor');
+
+        $getUser = $this->Auth->user();
+		if ($getUser) {
+			$getUserID = $getUser['id'];
+			if ($getUserID) {
+				$this->set('userID', $getUserID);
+				$uID = $getUserID;
+			} else {
+				$this->set('userID', '');
+				$uID = '';
+			}
+		}
+
+		$cond = array(
+                'approval' => 1
+        );
+
+	  	$comments = $this->Comment->find('all', array('conditions' => $cond));
+        
+		//good and bad process code
+		$good = $ratedGood = $ratedBad = $bad = '';
+		foreach ($instructors as $key => $instructor) {
+				$result[$key] = $instructor;
+			foreach ($attrib as $vkey => $val) {
+				$siteID = $instructor['Site']['id'];
+		  		$attriSID = $val['Attribute']['site_id'];
+		  		$attriUID = $val['Attribute']['user_id'];
+		  		$attriGood = $val['Attribute']['good'];
+		  		$attriBad = $val['Attribute']['bad'];
+		  		$result[$key]['ratedBad'] = "";
+		  		$result[$key]['ratedGood'] = "";
+		  		$result[$key]['good'] = "";
+		  		$result[$key]['bad'] = "";
+		  		$result[$key]['reviews'] = "";
+		  		$commnetcnt = 0;
+
+				if ($attriSID == $siteID) {
+					$result[$key][] = $val;
+
+					if ($attriSID == $siteID) {
+						$result[$key]['good'] = $good + $attriGood;
+						$result[$key]['bad'] = $bad + $attriBad;
+						/*$result[$key]['ratedBad'] = "";
+						$result[$key]['ratedGood'] = "";*/
+		  				$good = $good + $attriGood;
+			  			$bad = $bad + $attriBad;
+
+				  		
+			  		}
+			  			//var_dump($attriUID." - ".$uID);
+				  		if ($attriSID == $siteID && $attriGood > 0 && $attriBad == 0 && $uID <> '') {
+				  			$result[$key]['ratedGood'] = "You rate this";
+				  			$result[$key]['ratedBad'] = "";
+				  			$ratedGood = "You rate this";
+					  	} elseif ($attriSID == $siteID && $attriBad > 0 && $attriGood == 0 && $uID <> '') {
+					  		$result[$key]['ratedBad'] = "You rate this";
+					  		$result[$key]['ratedGood'] = "";
+				  			$ratedBad = "You rate this";
+					  	}
+				}
+		  	}
+
+		  	foreach($comments as $comment) {
+				if ($comment['Comment']['site_id'] == $siteID) {
+					$commnetcnt++;
+					$result[$key]['reviews'] = $commnetcnt;
+				}
+		  		
+		  	}
+	  	}
+
+	  	$this->set('attributes', $attrib);
+		$this->set('instructors', $result);
+	}
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Instructor->exists($id)) {
+			throw new NotFoundException(__('Invalid instructor'));
+		}
+		$options = array('conditions' => array('Instructor.' . $this->Instructor->primaryKey => $id));
+		$this->set('instructor', $this->Instructor->find('first', $options));
+
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Instructor->create();
+			if ($this->Instructor->save($this->request->data)) {
+				$this->Session->setFlash(__('The instructor has been saved.'), 'successflash');
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The instructor could not be saved. Please, try again.'), 'failflash');
+			}
+		}
+		$sites = $this->Instructor->Site->find('list', array(
+			'fields' => array(
+				'site_name'
+				)
+			)
+		);
+		$this->set(compact('sites'));
+		// gender
+		$gender = $this->gender;
+		$this->set(compact('gender', $gender));
+		// speak_japanese
+		$speak_japanese = $this->speak_japanese;
+		$this->set(compact('speak_japanese', $speak_japanese));
+		// evaluation
+		$evaluation = $this->evaluation;
+		$this->set(compact('evaluation', $evaluation));
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		
+		if (!$this->Instructor->exists($id)) {
+			throw new NotFoundException(__('Invalid instructor'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Instructor->save($this->request->data)) {
+				$this->Session->setFlash(__('The instructor has been saved.'), 'successflash');
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The instructor could not be saved. Please, try again.'), 'failflash');
+			}
+		} else {
+			$options = array('conditions' => array('Instructor.' . $this->Instructor->primaryKey => $id));
+			$this->request->data = $this->Instructor->find('first', $options);
+		}
+		//affiliated site
+		$sites = $this->Instructor->Site->find('list', array(
+			'fields' => array(
+				'site_name'
+				)
+			)
+		);
+		$this->set(compact('sites'));
+		// gender
+		$getgender = $this->data['Instructor']['gender'];
+		$this->set(compact('getgender', $getgender));
+		$gender = $this->gender;
+		$this->set(compact('gender', $gender));
+		// speak_japanese
+		$get_speak_japanese = $this->data['Instructor']['speak_japanese'];
+		$this->set(compact('get_speak_japanese', $get_speak_japanese));
+		$speak_japanese = $this->speak_japanese;
+		$this->set(compact('speak_japanese', $speak_japanese));
+		// evaluation
+		$get_evaluation = $this->data['Instructor']['evaluation'];
+		$this->set(compact('get_evaluation', $get_evaluation));
+		$evaluation = $this->evaluation;
+		$this->set(compact('evaluation', $evaluation));
+		// evaluation
+		$get_birthdate = $this->data['Instructor']['birthdate'];
+		$this->set(compact('get_birthdate', $get_birthdate));
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Instructor->id = $id;
+		if (!$this->Instructor->exists()) {
+			throw new NotFoundException(__('Invalid instructor'), 'failflash');
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Instructor->delete()) {
+			$this->Session->setFlash(__('The instructor has been deleted.'), 'successflash');
+		} else {
+			$this->Session->setFlash(__('The instructor could not be deleted. Please, try again.'), 'failflash');
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
+}

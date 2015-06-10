@@ -1,0 +1,131 @@
+<?php
+App::uses('AppController', 'Controller');
+/**
+ * Sites Controller
+ *
+ * @property Site $Site
+ * @property PaginatorComponent $Paginator
+ * @property SessionComponent $Session
+ */
+class SitesController extends AppController {
+	public $uses = array('Attribute', 'Site', 'User');
+/**
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator', 'Session');
+
+	public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->user();
+    }
+
+/**
+ * index method
+ *
+ * @return void
+ */
+	public function index() {
+		$this->Site->recursive = 0;
+
+		$this->paginate = array(
+            'limit' => 10,
+            'order' => array('Site.id' => 'asc' )
+        );
+
+        $sites = $this->paginate('Site');
+
+        $getUser = $this->Auth->user();
+			
+		$conditions = array(
+					'username' => $getUser['User']['username']
+				);
+		$getUserID = $this->User->find('first', array('conditions' => $conditions));
+		if ($getUserID) {
+			$this->set('userID', $getUserID['User']['id']);
+		} else {
+			$this->set('userID', '');
+		}
+		$this->set('attributes', $this->Attribute->find('all'));
+		$this->set('sites', $sites);
+	}
+
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function view($id = null) {
+		if (!$this->Site->exists($id)) {
+			throw new NotFoundException(__('Invalid site'));
+		}
+		$options = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));
+		$this->set('site', $this->Site->find('first', $options));
+	}
+
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function add() {
+		if ($this->request->is('post')) {
+			$this->Site->create();
+			if ($this->Site->save($this->request->data)) {
+				$this->Session->setFlash(__('The site has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The site could not be saved. Please, try again.'));
+			}
+		}
+	}
+
+/**
+ * edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function edit($id = null) {
+		if (!$this->Site->exists($id)) {
+			throw new NotFoundException(__('Invalid site'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Site->save($this->request->data)) {
+				$this->Session->setFlash(__('The site has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The site could not be saved. Please, try again.'));
+			}
+		} else {
+			$options = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));
+			$this->request->data = $this->Site->find('first', $options);
+		}
+	}
+
+/**
+ * delete method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
+	public function delete($id = null) {
+		$this->Site->id = $id;
+		if (!$this->Site->exists()) {
+			throw new NotFoundException(__('Invalid site'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->Site->delete()) {
+			$this->Session->setFlash(__('The site has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The site could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+
+}

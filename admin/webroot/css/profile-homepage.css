@@ -1,0 +1,82 @@
+#profile-homepage .upload-photo {
+  display: block;
+  margin-bottom: 19px;
+}
+
+#profile-homepage .upload-photo label {
+  margin-top: 15px;
+}
+
+#profile-homepage .upload-photo .photo-wrapper {
+  float: right;
+  margin-top: -100px;
+}
+
+#profile-homepage .upload-photo .photo-container {
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 3px;
+  display: table-cell;
+  height: 110px;  
+  padding: 4px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 150px;
+}
+
+#profile-homepage .upload-photo .photo-wrapper .photo-container img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+#profile-homepage .upload-photo .photo-wrapper #delete-photo {
+  background: url("../images/close-icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  float: right;
+  height: 18px;
+  margin-right: 3px;
+  margin-top: -107px;
+  position: relative;
+  width: 15px;
+  cursor:pointer;
+}
+
+#profile-homepage .centered {
+  text-align: center;
+}
+
+#profile-homepage .margin-btn20 {
+  margin-bottom: 20px;
+}
+
+.upload_file_container{
+   width:100px;
+   height:40px;
+   position:relative;
+   background(your img);
+}
+
+.upload_file_container input{
+   width:100px;
+   height:40px;
+   position:absolute;
+   left:0;
+   top:0;
+   cursor:pointer;
+}
+.upload-photo #profilePhotoMessage {
+  margin-top: -30px;
+}
+
+#delete-photo-icon {
+  background: url("../img/close-icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  cursor: pointer;
+  float: right;
+  height: 18px;
+  position: relative;
+  right: 5px;
+  top: -105px;
+  width: 15px;
+  z-index: 10;
+}
+
