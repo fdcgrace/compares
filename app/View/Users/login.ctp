@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 100px; box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2); background-color: #fff; border-radius: 5pt; border: 1px solid #ccc; padding: 20px;">
+<div class="row form-content">
 	<div>
 		<?php echo $this->Session->flash('auth'); ?>
 		<?php echo $this->Form->create('User', array('controller' => 'Users', 'action' => 'login')); ?>

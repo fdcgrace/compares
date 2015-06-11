@@ -165,6 +165,7 @@ class InstructorsController extends AppController {
 		$user = $this->Auth->user();
         $commentSes = "";
         $condSes = "";
+        $getRate = array();
 
         $siteByID = $this->Instructor->findById($id);
 
@@ -200,10 +201,23 @@ class InstructorsController extends AppController {
         );
         $commentByID = $this->Inscomment->find('all', array('conditions' => $conditions, 'order' => array('Inscomment.created' => 'desc')));
 
+        //get rate for comment
+        for ($i=0; $i <= 1; $i++) {
+        	$getRate[] = $this->Inscomment->find('count', 
+        			array('conditions' => 
+    					array(
+    						'Inscomment.rate' => $i, 
+    						'Inscomment.instructor_id' => $id, 
+    						'Inscomment.approval' => 1
+    					)
+        			)
+       			);
+        }
+
+        $this->set('bad', $getRate[0]);
+        $this->set('good', $getRate[1]);
         $this->set('comments', $commentByID);
         $this->set('commentSes', $commentSes);
-        $this->set('good', $this->Rating->find('count', array('conditions' => $cond1)));
-        $this->set('bad', $this->Rating->find('count', array('conditions' => $cond2)));
         $this->set('users', $user);
         $this->set('instructor', $siteByID);
         $this->set('sessionCheck', $sessionComment);

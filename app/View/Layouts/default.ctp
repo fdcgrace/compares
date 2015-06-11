@@ -53,7 +53,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<nav class="top-bar" data-topbar>
 			<ul class="title-area">
 				<li class="name">
-					<h1><a href="#"><?php echo $this->Html->link('Compare Prototype', array('controller' => 'sites', 'action' => 'index')); ?></a></h1>
+					<h1><a href="#"><?php echo $this->Html->link('Compare Prototype', array('controller' => 'pages', 'action' => 'display')); ?></a></h1>
 				</li>
 			  <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 			</ul>

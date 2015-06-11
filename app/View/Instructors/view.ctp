@@ -28,20 +28,22 @@
 		</div>
 		<div class="center-text">
 			<?php if ($loggedIn): ?>
-		 			<a href='#' id='goodAction' class='button tiny round'>Good!（数）</a>
+		 			<a href='#' id='goodAction' class='button tiny round'>Good!（<?php echo $good;?>）</a>
 					<?php 
 						/*echo $this->Html->link(__('Good!（数）'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny round', 'id' => 'goodAction'));*/
 					?>
-					<a href='#' id='badAction' class='button tiny alert round'>Bad!（数）</a>
+					<a href='#' id='badAction' class='button tiny alert round'>Bad!（<?php echo $bad;?>）</a>
 					<?php 
 						/*echo $this->Html->link(__('Bad!（数）'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny alert round', 'id' => 'badAction'));*/
 					?>
 		
 			<?php  endif; ?>
-			<a href='#' class='button tiny round'>動画を見る</a>
-			<a href='#' class='button tiny round'>サイトを見る</a>
+			<a href='#' id="videoModalbtn" data-reveal-id="videoModal" class='button tiny round'>動画を見る</a>
+			<?php echo $this->Html->link('サイトを見る', array('controller' => 'sites', 'action' => 'view', $instructor['Instructor']['site_id']), array('class' => 'button tiny round'));?>
 			<h4><small>押したらテキストボックスがポップアップしてコメント出来る</small></h4>
 		</div>
+		<hr>
+		<h4 class="white-text">コメント</h4>
 		<?php if($comments): ?>
 
             <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['instructor_id']): ?>
@@ -58,7 +60,7 @@
 		                  	<?php endif; ?>
 		                </div>
 		                
-	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
+	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
 	                  	<h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
 		            </div>
                 </div>
@@ -99,7 +101,7 @@
 
         <?php else: ?>
 
-            <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['site_id']): ?>
+            <?php if(isset($sessionCheck) && $instructor['Instructor']['id'] == $commentSes['Inscomment']['instructor_id']): ?>
 
                 <div class="panel">
                 <span style="color: #FFF">Your comment is waiting for approval and will look like this.</span>
@@ -113,7 +115,7 @@
 		                  	<?php endif; ?>
 		                </div>
 		                
-	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $comment['User']['name'] : 'Anonymous'; ?></small></h5>
+	                  	<h5><small>By: <?php echo (isset($commentSes['User']['name']))? $commentSes['User']['name'] : 'Anonymous'; ?></small></h5>
 	                  	<h5><small>Created: <?php echo $commentSes['Inscomment']['created']; ?></small></h5>
 		            </div>
                 </div>
@@ -141,7 +143,7 @@
 </div>
 
 <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-  <div class="row alert-box warning radius" style="padding-left: 1.5rem!important; background-color: #FF944D;margin-top: 15px; border-radius: 7pt;box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);">
+  <div class="row orange-content">
     <div class="row" >
         
         <div class="small-10 columns">
@@ -157,8 +159,6 @@
     </div>
 
     <hr>
-        <!-- <div class="small-2 columns"></div>
-        <div class="small-10 columns"> -->
         <div class="row">
             <?php echo $this->Form->create('Inscomment', array('controller' => 'inscomments', 'action' => 'sendmessage'));?>
             <div class="row collapse" style="margin-top: 10px; margin-bottom: 10px;">
@@ -169,12 +169,19 @@
                     <?php echo $this->Form->input(_('message'), array('type' => 'textarea', 'placeholder' => 'Type your comment here...', 'label' => false, 'style'=>'color: #000;'));?>
                 </div>
                 <div class="small-2 columns">
-                  <?php echo $this->Form->submit('Send', array('class' => 'button postfix',  'title' => 'Click here to send') );?>
-                </div>
-        <!--     </div>
-        </div> -->
+                	<?php echo $this->Form->submit('Send', array('class' => 'button postfix',  'title' => 'Click here to send') );?>
+            </div>
         </div>
 	<a class="close-reveal-modal" aria-label="Close">x</a>
+</div>
+
+<div id="videoModal" class="reveal-modal large" data-reveal aria-labelledby="videoModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="videoModalTitle">Lecture Video here</h2>
+  <div class="flex-video widescreen vimeo">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/sVchOvoaou0" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
 <!-- js -->
@@ -188,5 +195,9 @@
 		$('#myModal').foundation('reveal', 'open');
 		$('#myModal').foundation('reveal', 'close');
 		$('#eval').val('0');
+	});
+	$('#videoModalbtn').click(function() {
+		$('#videoModal').foundation('reveal', 'open');
+		$('#videoModal').foundation('reveal', 'close');
 	});
 </script>

@@ -1,3 +1,13 @@
+body {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important;
+}
+
+.modified-row {
+  margin: 0 auto;
+  max-width: 70rem;
+  width: auto;
+}
+
 .black-content {
   padding-left: 1.5rem!important; 
   background-color: #333333; 
@@ -36,11 +46,29 @@
   transition: opacity 300ms ease-out;
 }
 
+.orange-content {
+  padding-left: 1.5rem!important; 
+  background-color: #FF944D;
+  border-radius: 7pt;  
+  margin-top: 15px;  
+  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2);
+  border-style: solid;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  position: relative;
+  border: 1px #FF751A solid;
+  transition: opacity 300ms ease-out;
+}
+
 .gray-text-content {
   margin-bottom: 0.25rem!important;
   height: 155px;
   max-height: 155px;
-  background-color: #D7D7D7;
+  background-color: #eee;
   border-color: #c7c7c7;
   box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
   border-style: solid;
@@ -202,4 +230,109 @@
 .panel-gray-radius {
   background-color: #FFF;
   border-radius: 10px;
+}
+
+.table-header-black {
+  background-color: #555;
+  color: #fff;
+  border-top: solid 1px #555;
+  border-bottom: solid 1px #777;
+  border-left: solid 1px #555;
+}
+
+.table-content {
+  padding: 20px;
+  border: solid 1px #555;
+  width: 75%;
+}
+
+.table-header-red {
+  background-color: #f15544;
+  color: #fff;
+  border-top: solid 1px #555;
+  border-bottom: solid 1px #777;
+  border-left: solid 1px #555;
+}
+
+.table-content-red {
+  padding: 20px;
+  border: solid 1px #555;
+  width: 75%;
+  background-color: rgb(245, 160, 160);
+}
+
+.table-header-green {
+  background-color: #5cb267;
+  color: #fff;
+  border-top: solid 1px #555;
+  border-bottom: solid 1px #777;
+  border-left: solid 1px #555;
+}
+
+.table-content-green {
+  padding: 20px;
+  border: solid 1px #555;
+  width: 75%;
+  background-color: rgb(163, 205, 168);
+}
+
+.table-header-blue {
+  background-color: #3588b0;
+  color: #fff;
+  border-top: solid 1px #555;
+  border-bottom: solid 1px #777;
+  border-left: solid 1px #555;
+}
+
+.table-content-blue {
+  padding: 20px;
+  border: solid 1px #555;
+  width: 75%;
+  background-color: rgb(121, 174, 200);
+}
+
+.tag {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2) inset;
+  border-style: solid;
+  border-width: 0;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1rem 2rem 1.0625rem 2rem;
+  font-size: 1rem;
+  background-color: #767472;
+  border-color: #fff;
+  color: #FFFFFF;
+  transition: background-color 300ms ease-out;
+  padding: 0.625rem 1.25rem 0.6875rem 1.25rem;
+  font-size: 0.6875rem;
+}
+
+.p-title {
+  background-color: #0c929c;
+  color: #fff;
+  padding: 5px;
+}
+
+.p-content {
+  background: #16a9b2;
+  color:#fff;
+  padding: 5px;
+}
+
+.form-content {
+  margin-top: 100px; 
+  box-shadow: 9px 9px 1px 0 rgba(0,0,0,0.2); 
+  background-color: #fff; 
+  border-radius: 5pt; 
+  border: 1px solid #ccc; 
+  padding: 20px;
 }

@@ -122,7 +122,6 @@ class SitesController extends AppController {
 		  				$good = $good + $attriGood;
 			  			$bad = $bad + $attriBad;
 
-				  		
 			  		}
 			  			//var_dump($attriUID." - ".$uID);
 				  		if ($attriSID == $siteID && $attriGood > 0 && $attriBad == 0 && $uID <> '') {
@@ -174,23 +173,25 @@ class SitesController extends AppController {
 				
 				return $this->redirect($filter_url);
 			} else {
-				$id = $this->params['named']['site_id']; 
-				foreach($this->params['named'] as $param_name => $value){
-					if(!in_array($param_name, array('page','sort','direction','limit'))){
-						if($param_name == "Search"){
-							$conditions['AND'] = array(
-								array('Instructor.e_name LIKE' => '%' . $value . '%'),
-								array('Instructor.site_id' => $id),
-								array('Site.id' => $id)
-							);
-							break;
-						} else {
-							$conditions['AND'] = array(
-								array('Instructor.site_id' => $id),
-								array('Site.id' => $id)
-							);
-						}				
-						$this->request->data['Filter'][$param_name] = $value;
+				if(isset($this->params['named']['site_id'])) {
+					$id = $this->params['named']['site_id']; 
+					foreach($this->params['named'] as $param_name => $value){
+						if(!in_array($param_name, array('page','sort','direction','limit'))){
+							if($param_name == "Search"){
+								$conditions['AND'] = array(
+									array('Instructor.e_name LIKE' => '%' . $value . '%'),
+									array('Instructor.site_id' => $id),
+									array('Site.id' => $id)
+								);
+								break;
+							} else {
+								$conditions['AND'] = array(
+									array('Instructor.site_id' => $id),
+									array('Site.id' => $id)
+								);
+							}				
+							$this->request->data['Filter'][$param_name] = $value;
+						}
 					}
 				}
 			}
@@ -214,13 +215,16 @@ class SitesController extends AppController {
 		$default = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));*/
 		$options = array('conditions' => $conditions);
 		$result = $this->Instructor->find('all', $options);
-		
-		if ($result) {
-			$this->set('site', $result);
+		if (isset($id)) {
+			if ($result) {
+				$this->set('site', $result);
+			} else {
+				$options = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));
+				//$result = $this->Site->find('first', $options);
+				$this->set('sites', $this->Site->find('first', $options));
+			}
 		} else {
-			$options = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));
-			//$result = $this->Site->find('first', $options);
-			$this->set('sites', $this->Site->find('first', $options));
+			$this->set('site', null);
 		}
 	}
 
