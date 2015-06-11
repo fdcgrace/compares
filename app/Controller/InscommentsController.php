@@ -71,7 +71,7 @@ class InscommentsController extends AppController {
             }
 
             if (isset($this->request->data['Inscomment']['instructor_id'])) {
-                $redirect = array('action' => 'conversation', $this->request->data['Inscomment']['instructor_id']);
+                $redirect = array('controller' => 'instructors', 'action' => 'view', $this->request->data['Inscomment']['instructor_id']);
             }
 
             $this->Inscomment->create();
