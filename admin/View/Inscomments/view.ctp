@@ -6,7 +6,7 @@
 			<?php echo h($inscomments['Instructor']['e_name']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Instructor URL'); ?></dt>
+		<dt><?php echo __('講師リンクURL'); ?></dt>
 		<dd>
 			<?php echo h($inscomments['Instructor']['instructor_url']); ?>
 			&nbsp;

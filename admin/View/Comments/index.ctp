@@ -4,9 +4,9 @@
         <thead>
             <tr>
                 <th><?php echo $this->Paginator->sort('site_image'); ?></th>
-                <th><?php echo $this->Paginator->sort('site_name'); ?></th>
-                <th><?php echo $this->Paginator->sort('site_url_link'); ?></th>
-                <th><?php echo $this->Paginator->sort('no_teachers'); ?></th>
+                <th><?php echo $this->Paginator->sort('site_name','サイト名'); ?></th>
+                <th><?php echo $this->Paginator->sort('site_url_link','サイトURL（リンク用）'); ?></th>
+                <th><?php echo $this->Paginator->sort('no_teachers','講師数'); ?></th>
                 <th>&nbsp;</th>
 
                
