@@ -80,7 +80,7 @@
 			
 				<div class="row">
 					<div class="medium-3 columns image-gray">
-						<!-- <img src="/app/webroot/img/sites/<?php //echo $site['Site']['site_image']?>" style="max-height: 105px;"> -->
+						<img src="/app/webroot/img/instructor/thumbnail/<?php echo $instructor['Instructor']['image']?>" class="full-img-size">
 					</div><!-- end of div medium-2 columns -->	
 				  	<div class="medium-9 columns white-text-content-shadow">
 				  		
@@ -103,40 +103,14 @@
 									<td><h5><small class="black-text"><?php echo ($instructor['Instructor']['gender'] == 1)?'Female':'Male'; ?></small></h5></td>
 								</tr>
 							</table>
-					
-							<?php 
-						  		$good = $ratedGood = $ratedBad = $bad = '';
-						  		$cond2 = $cond1 = true;
-							  	foreach ($ratings as $val) {
-							  		$siteID = $instructor['Instructor']['id'];
-							  		$ratingSID = $val['Rating']['instructor_id'];
-							  		$ratingUID = $val['Rating']['user_id'];
-							  		$ratingGood = $val['Rating']['good'];
-							  		$ratingBad = $val['Rating']['bad'];
-								  	if ($ratingSID == $siteID) {
-								  		if(isset($userID) && $ratingUID == $userID) {
-											$ratedGood = $ratingGood;
-											$ratedBad = $ratingBad;
-								  			$cond1 = $cond2 = false;
-								  		}
-								  		
-								  		$good = $good + $ratingGood;
-								  		
-								  		$bad = $bad + $ratingBad;
-								  	}
-							  	}
-							  	if($good == 0) {
-							  		$good = "";
-							  	}
-							  	if($bad == 0) {
-							  		$bad = "";
-							  	}
-							 ?>
 							<ul class="inline-list pad-right">
 								<li><h5><small><?php echo $this->Html->link(__("More info"), array('action' => 'view', $instructor['Instructor']['id'])); ?></small></h5></li>
 								 <!-- Good or Bad display -->
-								<li><span class="round label">Good <?php echo (isset($userID) && $cond1 <> true && $ratedGood > 0)?$good." You rate this" : $good ;?></span></li>
-								<li><span class="round alert label">Bad <?php echo (isset($userID) && $cond2 <> true && $ratedBad > 0)?$bad." You rate this" : $bad; ?></span></li>
+
+								<li><span class="round label">Good <?php echo ($instructor['good'] > 0)? $instructor['good']: "";?></span></li>
+
+								<li><span class="round alert label">Bad <?php echo ($instructor['bad'] > 0)? $instructor['bad']: ""; ?></span></li>
+
 								<li>
 									<?php if($instructor['reviews']): ?>
 										<span class="warning label">Reviews: <?php echo $instructor['reviews'];?></span>
@@ -144,21 +118,6 @@
 								</li>
 							</ul>
 							</div><!-- end of div medium-10 columns -->			  	
-							<div class="medium-10 columns" style="padding-top:5px;">
-					 			<?php if ($loggedIn): ?>
-								 	<?php if ($cond1 && $cond2): ?>
-											<?php 
-												/*echo $this->Html->link(__('Rate Good'), array('controller' => 'ratings', 'action' => 'good', $instructor['Instructor']['id']), array('class' => 'button tiny round'));*/
-											?>
-											<?php 
-												/*echo $this->Html->link(__('Rate Bad'), array('controller' => 'ratings', 'action' => 'bad', $instructor['Instructor']['id']), array('class' => 'button tiny alert round'));*/
-											?>
-								  	<?php  endif; ?>
-								<?php  endif; ?>
-							  		<?php 
-							  			/*echo $this->Html->link(__('Comment'), array('controller' => 'inscomments', 'action' => 'conversation', $instructor['Instructor']['id']), array('class' => 'button tiny success round'));*/
-							  		?> 
-						  	</div>
 						</div>
 					</div>	  
 				
@@ -189,12 +148,3 @@
 		<li class="arrow"><?php echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled')); ?></li>
 	</ul>
 </div>
-
-
-  
-    
-
-
-  
-    
-

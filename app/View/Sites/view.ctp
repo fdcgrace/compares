@@ -1,6 +1,6 @@
 <div class="modified-row white-content">
   <!-- page title here -->
-  <?php if($site):?>
+  <?php if(isset($site)):?>
   <div class="row">
     <h2>サイトロゴ/タイトル</h2>
   </div>
@@ -13,7 +13,7 @@
     <div class="small-9 columns">
     	<div class="row">
 			<div class="small-3 columns">
-				<img src="http://placehold.it/300x240&text=[img]" />
+				<img src="/app/webroot/img/sites/thumbnail/<?php echo $site[0]['Site']['site_image']?>" class="full-img-size"/>
 			</div>
 			<div class="small-9 columns">
 				<p class="p-title">サイト名: <span class="p-content"><?php echo $site[0]['Site']['site_name']; ?></span></p>

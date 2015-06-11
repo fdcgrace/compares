@@ -98,53 +98,23 @@ class InstructorsController extends AppController {
 		//good and bad process code
 		$good = $ratedGood = $ratedBad = $bad = '';
 		foreach ($instructors as $key => $instructor) {
-				$result[$key] = $instructor;
-
-			foreach ($attrib as $vkey => $val) {
-				$siteID = $instructor['Instructor']['id'];
-		  		$attriSID = $val['Rating']['instructor_id'];
-		  		$attriUID = $val['Rating']['user_id'];
-		  		$attriGood = $val['Rating']['good'];
-		  		$attriBad = $val['Rating']['bad'];
-		  		$result[$key]['ratedBad'] = "";
-		  		$result[$key]['ratedGood'] = "";
-		  		$result[$key]['good'] = "";
+				$result[$key]['good'] = "";
 		  		$result[$key]['bad'] = "";
-		  		$result[$key]['reviews'] = "";
-		  		$commnetcnt = 0;
-
-				if ($attriSID == $siteID) {
-					$result[$key][] = $val;
-
-					if ($attriSID == $siteID) {
-						$result[$key]['good'] = $good + $attriGood;
-						$result[$key]['bad'] = $bad + $attriBad;
-						/*$result[$key]['ratedBad'] = "";
-						$result[$key]['ratedGood'] = "";*/
-		  				$good = $good + $attriGood;
-			  			$bad = $bad + $attriBad;
-			  		}
-				  		if ($attriSID == $siteID && $attriGood > 0 && $attriBad == 0 && $uID <> '') {
-				  			$result[$key]['ratedGood'] = "You rate this";
-				  			$result[$key]['ratedBad'] = "";
-				  			$ratedGood = "You rate this";
-					  	} elseif ($attriSID == $siteID && $attriBad > 0 && $attriGood == 0 && $uID <> '') {
-					  		$result[$key]['ratedBad'] = "You rate this";
-					  		$result[$key]['ratedGood'] = "";
-				  			$ratedBad = "You rate this";
-					  	}
-				}
-		  	}
+				$commnetcnt = 0;
+				$siteID = $instructor['Instructor']['id'];
+				$result[$key] = $instructor;
+				//var_dump($instructor);
+				$result[$key]['good'] = $this->getRateCount($siteID, 1);
+				$result[$key]['bad'] = $this->getRateCount($siteID, 0);
 
 		  	foreach($comments as $comment) {
+		  		$result[$key]['reviews'] = "";
 				if ($comment['Inscomment']['instructor_id'] == $siteID) {
 					$commnetcnt++;
 					$result[$key]['reviews'] = $commnetcnt;
 				}
-		  		
 		  	}
 	  	}
-
 	  	$this->set('ratings', $attrib);
 		$this->set('instructors', $result);
 	}
@@ -326,6 +296,18 @@ class InstructorsController extends AppController {
 			$this->Session->setFlash(__('The instructor could not be deleted. Please, try again.'), 'failflash');
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+
+	function getRateCount($id, $rate) {
+		$cond = array(
+				'approval' => 1,
+					'rate' => $rate,
+				'instructor_id' => $id
+			);
+		$result = $this->Inscomment->find('count', array('conditions' => $cond));
+
+		return $result;
 	}
 
 }

@@ -66,8 +66,6 @@ body {
 
 .gray-text-content {
   margin-bottom: 0.25rem!important;
-  height: 155px;
-  max-height: 155px;
   background-color: #eee;
   border-color: #c7c7c7;
   box-shadow: 4px 4px 1px 0 rgba(0,0,0,0.2);
@@ -117,6 +115,20 @@ body {
   transition: opacity 300ms ease-out;
 }
 
+.mini-titlebar-black {
+  color: #fff;
+  border-radius: 3px;
+  background-color: #8B8B8B;
+  box-shadow: 0 3px 0 0 #717171;
+  border-width: 1px;
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  position: relative;
+  transition: opacity 300ms ease-out;
+}
+
 .image-gray {
   height: 155px;
   max-height: 155px;
@@ -129,7 +141,7 @@ body {
   font-size: 0.8125rem;
   font-weight: normal;
   margin-bottom: 1.25rem;
-  padding: 0.875rem 1.5rem 0.875rem 0.875rem;
+  padding: 0.875rem 0.875rem 0.875rem 0.875rem;
   position: relative;
   transition: opacity 300ms ease-out;
 }
@@ -335,4 +347,30 @@ body {
   border-radius: 5pt; 
   border: 1px solid #ccc; 
   padding: 20px;
+}
+
+.full-img-size {
+  max-height: 100%;
+  width: 100%;
+}
+
+.td-gray-header {
+  background-color: #DADADA;
+  padding: 25px;
+  color: #6F6F6F;
+  border: 1px solid #c7c7c7;
+}
+
+.td-gray-even {
+  background-color: #F0EAD6;
+  padding: 25px;
+  color: #6F6F6F;
+  border: 1px solid #c7c7c7;
+}
+
+.td-gray-odd {
+  background-color: #FFF7DF;
+  padding: 25px;
+  color: #6F6F6F;
+  border: 1px solid #c7c7c7;
 }

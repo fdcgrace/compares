@@ -3494,7 +3494,8 @@ ul.pagination {
     font-weight: normal;
     margin: 0 0 0.4375rem 0; }
     .side-nav li a:not(.button) {
-      color: #008CBA;
+      /*color: #008CBA;*/
+      color: #000;
       display: block;
       margin: 0;
       padding: 0.4375rem 0.875rem; }

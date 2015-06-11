@@ -11,7 +11,7 @@
     <div class="small-9 columns white-text">
      	<div class="row">
 			<div class="small-3 columns">
-				<img src="http://placehold.it/300x240&text=[img]" />
+				<img src="/app/webroot/img/instructor/thumbnail/<?php echo $instructor['Instructor']['image']?>" class="full-img-size"/>
 			</div>
 			<div class="small-9 columns">
 				<p>名前（英語）: <?php echo $instructor['Instructor']['e_name']; ?> / 名前（日本語）: <?php echo $instructor['Instructor']['k_name']; ?></p>

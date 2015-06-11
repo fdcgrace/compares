@@ -71,81 +71,38 @@
 <div class="small-10 columns">
 	<ul class="side-nav ">
 		<?php if (!$sites): ?>
-		<li>Search result found zero</li>
+			<hr>
+			<li>Search result found zero</li>
 		<?php endif; ?>
-		<li>
-			<?php foreach ($sites as $site): ?>
+		<?php foreach ($sites as $site): ?>
+			<li style="padding-bottom: 20px">
 				<div class="row">
-					<div class="medium-2 columns image-gray">
-						<img src="/app/webroot/img/sites/<?php echo $site['Site']['site_image']?>" style="max-height: 105px;">
+					<div class="medium-3 columns image-gray">
+						<img src="/app/webroot/img/sites/thumbnail/<?php echo $site['Site']['site_image']?>" class="full-img-size">
 					</div><!-- end of div medium-2 columns -->	
-				  	<div class="medium-10 columns gray-text-content">
-						<h5><?php echo $this->Html->link(__($site['Site']['site_name']), array('action' => 'view', $site['Site']['id'])); ?></h5>
-						<a href='#'>Url: <?php echo h($site['Site']['site_url_link']); ?></a>
-									  
-						 <?php 
-					  		$good = $ratedGood = $ratedBad = $bad = '';
-					  		$cond2 = $cond1 = true;
-						  	foreach ($attributes as $val) {
-						  		$siteID = $site['Site']['id'];
-						  		$attriSID = $val['Attribute']['site_id'];
-						  		$attriUID = $val['Attribute']['user_id'];
-						  		$attriGood = $val['Attribute']['good'];
-						  		$attriBad = $val['Attribute']['bad'];
-							  	if ($attriSID == $siteID) {
-							  		if(isset($userID) && $attriUID == $userID) {
-										$ratedGood = $attriGood;
-										$ratedBad = $attriBad;
-							  			$cond1 = $cond2 = false;
-							  		}
-							  		
-							  		$good = $good + $attriGood;
-							  		
-							  		$bad = $bad + $attriBad;
-							  	}
-						  	}
-						  	if($good == 0) {
-						  		$good = "";
-						  	}
-						  	if($bad == 0) {
-						  		$bad = "";
-						  	}
-						 ?>
-						 <!-- Good or Bad display -->
-						<!-- <span class="round label">Good <?php //echo (isset($userID) && $cond1 <> true && $ratedGood > 0)?$good." You rate this" : $good ;?></span> 
-						<span class="round alert label">Bad <?php //echo (isset($userID) && $cond2 <> true && $ratedBad > 0)?$bad." You rate this" : $bad; ?></span>  -->
-							  	<small>Details:
-							  	講師数: <?php echo h($site['Site']['no_teachers']); ?>
-								入会金: <?php echo h($site['Site']['admission_fee']); ?>
-							  	無料体験レッスン: <?php echo h($site['Site']['trial_lesson']);?>
-							  	1レッスンあたりの最安値: <?php echo h($site['Site']['lowest_price']); ?>
-							  	</small>
-							値段: 
-							<?php //if($site['reviews']): ?>
-								<!-- <span class="warning label">Reviews: <?php echo $site['reviews'];?></span> -->
-							<?php //endif;?>
-						</div><!-- end of div medium-10 columns -->			  	
-						<div class="medium-10 columns" style="padding-top:5px;">
-				 			<?php if ($loggedIn): ?>
-							 	<?php if ($cond1 && $cond2): ?>
-										<?php 
-											//echo $this->Html->link(__('Rate Good'), array('controller' => 'attributes', 'action' => 'good', $site['Site']['id']), array('class' => 'button tiny round'));
-										?>
-										<?php 
-											//echo $this->Html->link(__('Rate Bad'), array('controller' => 'attributes', 'action' => 'bad', $site['Site']['id']), array('class' => 'button tiny alert round'));
-										?>
-							  	<?php  endif; ?>
-							<?php  endif; ?>
-						  		<?php 
-						  			//echo $this->Html->link(__('Comment'), array('controller' => 'comments', 'action' => 'conversation', $site['Site']['id']), array('class' => 'button tiny success round'));
-						  		?>
-					  	</div>
+				  	<div class="medium-9 columns gray-text-content">
+						<h5 class="mini-titlebar-black"><?php echo $this->Html->link(__('サイト名: '.$site['Site']['site_name']), array('action' => 'view', $site['Site']['id']), array('class' => 'black-text')); ?></h5>
+							<a href='#' class="black-text">サイト名（リンク）: <?php echo h($site['Site']['site_url_link']); ?></a>
+							<hr>
+							<table>
+								<tr>
+									<th class="td-gray-header">無料体験レッスン:</th>
+									<th class="td-gray-header">1レッスンあたりの最安値:</th>
+									<th class="td-gray-header">講師国籍:</th>
+									<th class="td-gray-header">在籍講師数:</th>
+								</tr>
+								<tr>
+									<th class="td-gray-odd"><?php echo h($site['Site']['trial_lesson']);?></th>
+									<th class="td-gray-even"><?php echo h($site['Site']['lowest_price']); ?></th>
+									<th class="td-gray-odd"><?php echo h($site['Site']['nationality']); ?></th>
+									<th class="td-gray-even"><?php echo h($site['Site']['no_teachers']); ?></th>
+								</tr>
+							</table>
 					</div>	  
-				
-		
-		  	<?php endforeach; ?>
-		</div>
-		</li>
+				</div>
+				<hr>
+			</li>
+		<?php endforeach; ?>
 	</ul>
 </div>
 

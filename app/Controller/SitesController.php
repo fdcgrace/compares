@@ -117,13 +117,10 @@ class SitesController extends AppController {
 					if ($attriSID == $siteID) {
 						$result[$key]['good'] = $good + $attriGood;
 						$result[$key]['bad'] = $bad + $attriBad;
-						/*$result[$key]['ratedBad'] = "";
-						$result[$key]['ratedGood'] = "";*/
 		  				$good = $good + $attriGood;
 			  			$bad = $bad + $attriBad;
 
 			  		}
-			  			//var_dump($attriUID." - ".$uID);
 				  		if ($attriSID == $siteID && $attriGood > 0 && $attriBad == 0 && $uID <> '') {
 				  			$result[$key]['ratedGood'] = "You rate this";
 				  			$result[$key]['ratedBad'] = "";
@@ -202,26 +199,16 @@ class SitesController extends AppController {
 			);
 		}
 
-		//$this->Site->recursive = 0;
-
-		/*$this->paginate = array(
-            'limit' => 10,
-            //'order' => array('Site.id' => 'asc' ),
-            'contain' => $conditions
-        );
-
-        $sites = $this->paginate('Site');
-
-		$default = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));*/
 		$options = array('conditions' => $conditions);
 		$result = $this->Instructor->find('all', $options);
+
 		if (isset($id)) {
+
 			if ($result) {
 				$this->set('site', $result);
 			} else {
 				$options = array('conditions' => array('Site.' . $this->Site->primaryKey => $id));
-				//$result = $this->Site->find('first', $options);
-				$this->set('sites', $this->Site->find('first', $options));
+				$this->set('site', $this->Site->find('all', $options));
 			}
 		} else {
 			$this->set('site', null);
