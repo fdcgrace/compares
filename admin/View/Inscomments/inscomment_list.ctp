@@ -3,7 +3,7 @@
     <table>
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('user_id', 'User');?>  </th>
+                <th><?php echo $this->Paginator->sort('e_name', '名前（英語）');?>  </th>
                 <th><?php echo $this->Paginator->sort('message', 'Message');?>  </th>
                 <th><?php echo $this->Paginator->sort('created', 'Created');?>  </th>
                 <th><?php echo $this->Paginator->sort('rate', 'Rate');?>  </th>

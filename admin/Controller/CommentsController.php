@@ -27,7 +27,7 @@ class CommentsController extends AppController {
 
     public function view($id = null) {
         if (!$this->Comment->exists($id)) {
-            throw new NotFoundException(__('Invalid instructor'));
+            throw new NotFoundException(__('Invalid comment information'),'failflash');
         }
         $options = array('conditions' => array('Comment.' . $this->Comment->primaryKey => $id));
         $this->set('comment', $this->Comment->find('first', $options));

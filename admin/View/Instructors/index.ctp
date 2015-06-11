@@ -13,14 +13,14 @@
 		<div class="medium-3 columns">
 			<?php
 				$arr = array("");
-				echo $this->Form->input('gender', array('label' => '性別 Gender',  'type'=>'select',
+				echo $this->Form->input('gender', array('label' => '性別',  'type'=>'select',
 			'options'=> array_merge($arr,$gender)));
 			?>
 		</div>
 		<div class="medium-3 columns">
 			<?php
 				$address = array_merge(array(""),$address);
-				echo $this->Form->input('address', array('label' => '居住地/出身国 Address/Homeland',  'type'=>'select',
+				echo $this->Form->input('address', array('label' => '居住地/出身国',  'type'=>'select',
 			'options'=> array_combine($address,$address)));
 			?>
 		</div>
@@ -34,16 +34,16 @@
 		<tr>
 			<th><?php echo $this->Paginator->sort('site_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('site_id','Profile'); ?></th>
-			<th><?php echo $this->Paginator->sort('e_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('k_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('address'); ?></th>
-			<th><?php echo $this->Paginator->sort('gender'); ?></th>
-			<th><?php echo $this->Paginator->sort('speak_japanese'); ?></th>
-			<th><?php echo $this->Paginator->sort('instructor_history'); ?></th>
-			<th><?php echo $this->Paginator->sort('evaluation'); ?></th>
-			<th><?php echo $this->Paginator->sort('work_place'); ?></th>
-			<th><?php echo $this->Paginator->sort('message'); ?></th>
-			<th><?php echo $this->Paginator->sort('instructor_url'); ?></th>
+			<th><?php echo $this->Paginator->sort('e_name', '名前（英語）'); ?></th>
+			<th><?php echo $this->Paginator->sort('k_name', '名前（カタカナ）'); ?></th>
+			<th><?php echo $this->Paginator->sort('address','居住地/出身国'); ?></th>
+			<th><?php echo $this->Paginator->sort('gender','性別'); ?></th>
+			<th><?php echo $this->Paginator->sort('speak_japanese','日本語対応'); ?></th>
+			<th><?php echo $this->Paginator->sort('instructor_history','講師歴'); ?></th>
+			<th><?php echo $this->Paginator->sort('evaluation','評価'); ?></th>
+			<th><?php echo $this->Paginator->sort('work_place','勤務場所'); ?></th>
+			<th><?php echo $this->Paginator->sort('message','講師からのメッセージ（自己紹介）'); ?></th>
+			<th><?php echo $this->Paginator->sort('instructor_url','講師リンクURL'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 		</tr>
 		</thead>

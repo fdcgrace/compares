@@ -1,8 +1,5 @@
 <div class="sites index">
-	<h2><?php 
-			echo __('Sites');
-		?>
-	</h2>
+	<h2><?php echo __('Sites'); ?></h2>
 	<?php 
 		$base_url = array('controller' => 'sites', 'action' => 'index');
     	echo $this->Form->create("Filter",array('url' => $base_url, 'class' => 'filter')); 
@@ -22,12 +19,12 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('site_image'); ?></th>
-			<th><?php echo $this->Paginator->sort('site_name'); ?></th>
-			<th><?php echo $this->Paginator->sort('site_url_link'); ?></th>
-			<th><?php echo $this->Paginator->sort('trial_lesson'); ?></th>
-			<th><?php echo $this->Paginator->sort('lowest_price'); ?></th>
-			<th><?php echo $this->Paginator->sort('nationality'); ?></th> 
-			<th><?php echo $this->Paginator->sort('no_teachers'); ?></th>
+			<th><?php echo $this->Paginator->sort('site_name', 'サイト名'); ?></th>
+			<th><?php echo $this->Paginator->sort('site_url_link','サイトURL（リンク用）'); ?></th>
+			<th><?php echo $this->Paginator->sort('trial_lesson','無料体験レッスン'); ?></th>
+			<th><?php echo $this->Paginator->sort('lowest_price','1レッスンの最安値'); ?></th>
+			<th><?php echo $this->Paginator->sort('nationality','講師国籍（ネイティブ在籍）'); ?></th> 
+			<th><?php echo $this->Paginator->sort('no_teachers','講師数'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>

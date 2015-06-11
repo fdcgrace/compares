@@ -24,7 +24,6 @@ class InstructorsController extends AppController {
  * @return void
  */
 
-	
 	public function index() {
 		$conditions = "";
 
@@ -40,19 +39,28 @@ class InstructorsController extends AppController {
 				}
 			}
 			return $this->redirect($filter_url);
-
 		} else {
 			foreach($this->params['named'] as $param_name => $value){
 				if(!in_array($param_name, array('page','sort','direction','limit'))){
 					if($param_name == "Search" || $param_name == "gender" || $param_name == "address"){
-						$conditions = array(
-							'OR' => array(
+						$conditions2 = $conditions3 = array();
+						if($param_name == "gender"){
+							$conditions1 = array('Instructor.gender ' => $value);
+						}
+						if($param_name == "address"){
+							$conditions2 =   array('Instructor.address ' => $value);
+						}
+						$conditions3 = array('Instructor.del_flag ' => 1);
+						
+						if(!empty($conditions1) || (!empty($conditions2)) )
+						$conditions['AND'] = array_merge($conditions1, $conditions2, $conditions3);
+						if($param_name == "Search"){
+							$conditions['OR'] = array(
 								array('Instructor.e_name LIKE' => '%' . $value . '%'),
 								array('Instructor.k_name LIKE' => '%' . $value . '%'),
-								array('Instructor.speak_japanese LIKE' => '%' . $value . '%')
-								),
-							'AND' => array('Instructor.del_flag' => 1)
-						);
+								array('Site.site_name LIKE' => '%' . $value . '%')
+							);
+						}
 					} else {
 						$conditions['Instructor.'.$param_name] = $value; 
 					}					
@@ -60,7 +68,6 @@ class InstructorsController extends AppController {
 				}
 			}
 		}
-
 		$address = $this->Instructor->find('list', array(
             'fields' => array('address'),
             'conditions' => array('not' => array('address' => null), 'Instructor.del_flag' => 1)
@@ -77,7 +84,6 @@ class InstructorsController extends AppController {
         );
 
         $instructors = $this->paginate('Instructor');
-
 		$this->set('instructors', $instructors);
 
 	}
@@ -153,21 +159,6 @@ class InstructorsController extends AppController {
             }
 		}
 
-		/*if ($this->request->is('post')) {
-			$this->Instructor->create();
-			if ($this->Instructor->save($this->request->data)) {
-				$this->Session->setFlash(__('The instructor has been saved.'),'successflash');
-				return $this->redirect(array('action' => 'index'));
-			} else {
-				$birthdate = $this->request->data['Instructor']['birthdate'];
-				$this->set(compact('birthdate', $birthdate));
-				$age = $this->request->data['Instructor']['age'];
-				$this->set(compact('age', $age));
-				$this->Session->setFlash(__('The instructor could not be saved. Please, try again.'),'failflash');
-			}
-		}*/
-
-		
 		$sites = $this->Instructor->Site->find('list', array(
 			'fields' => array(
 				'site_name'
@@ -196,7 +187,7 @@ class InstructorsController extends AppController {
 	public function edit($id = null) {
 		
 		if (!$this->Instructor->exists($id)) {
-			throw new NotFoundException(__('Invalid instructor'),'infoflash');
+			throw new NotFoundException(__('Invalid instructor information'),'infoflash');
 		}
 			
 		if ($this->request->is(array('post', 'put'))) {
@@ -214,7 +205,7 @@ class InstructorsController extends AppController {
 				} else {
 					$img = $this->request->data['Instructor']['getimage'];
 					$this->set(compact('img',$img));
-					$this->Session->setFlash(__('The instructor could not be saved. Please, try again. 1'),'failflash');
+					$this->Session->setFlash(__('The instructor could not be saved. Please, try again.'),'failflash');
 				}
 			} else {
 
@@ -242,11 +233,13 @@ class InstructorsController extends AppController {
 						$result = array_merge($result, $farray, $getImage);
 
 						if ($this->Instructor->save($result)) {
-							echo $this->insPath.$farray['getimage'];
-							if(file_exists($this->insPath.$farray['getimage'])){
-								unlink($this->insPath.$farray['getimage']);	
-								unlink($this->insPathThumb.$farray['getimage']);	
+							if(!empty($farray['getimage'])){
+								if(file_exists($this->insPath.$farray['getimage'])){
+									unlink($this->insPath.$farray['getimage']);	
+									unlink($this->insPathThumb.$farray['getimage']);	
+								}	
 							}
+							
 							$this->Session->setFlash(__('The instructor has been saved.'),'successflash');
 							return $this->redirect(array('action' => 'index'));
 						} else {
@@ -254,7 +247,7 @@ class InstructorsController extends AppController {
 							unlink($this->insPathThumb.$newFilename);
 							$img = $this->request->data['Instructor']['getimage'];
 							$this->set(compact('img',$img));
-							$this->Session->setFlash(__('The site could not be saved. Please, try again. 2'),'failflash');
+							$this->Session->setFlash(__('The site could not be saved. Please, try again.'),'failflash');
 						}
 					}
 	            }else{
@@ -312,7 +305,7 @@ class InstructorsController extends AppController {
 	public function delete($id = null) {
 		$this->Instructor->id = $id;
 		if (!$this->Instructor->exists()) {
-			throw new NotFoundException(__('Invalid instructor'),'failflash');
+			throw new NotFoundException(__('Invalid instructor information'),'failflash');
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Instructor->delete()) {

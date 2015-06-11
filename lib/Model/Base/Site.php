@@ -101,7 +101,7 @@ class Site extends AppModel {
 			),
 			'url' => array(
 				'rule' => array('url'),
-				'message' => 'Invalid Site URL.',
+				'message' => 'Invalid URL',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -199,7 +199,7 @@ class Site extends AppModel {
 		'no_teachers' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'No. of Teacher(s) is/are required.',
+				'message' => 'No. of Teacher is required.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

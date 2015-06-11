@@ -3,10 +3,11 @@
     <table>
         <thead>
             <tr>
-                <th><?php echo $this->Paginator->sort('e_name', 'Name'); ?></th>
-                <th><?php echo $this->Paginator->sort('education'); ?></th>
-                <th><?php echo $this->Paginator->sort('speak_japanese'); ?></th>
-                <th><?php echo $this->Paginator->sort('instructor_url'); ?></th>
+                <th><?php echo $this->Paginator->sort('e_name', '名前（英語）'); ?></th>
+                <th><?php echo $this->Paginator->sort('k_name', '名前（カタカナ）'); ?></th>
+                <th><?php echo $this->Paginator->sort('education','最終学歴'); ?></th>
+                <th><?php echo $this->Paginator->sort('speak_japanese','日本語対応'); ?></th>
+                <th><?php echo $this->Paginator->sort('instructor_url','講師リンクURL'); ?></th>
                 <th>&nbsp;</th>
 
                
@@ -21,9 +22,9 @@
                 <td style="text-align: center;">
                     <?php 
                         echo $this->Html->link( $inscomment['Instructor']['e_name']  ,   array('controller' => 'instructors', 'action'=>'view', $inscomment['Instructor']['id']),array('escape' => false) );
-
                     ?>
                 </td>
+                <td><?php echo $inscomment['Instructor']['k_name'] ; ?></td>
                 <td style="text-align: center;"><?php echo $inscomment['Instructor']['education']; ?></td>
                 <td style="text-align: center;"><?php echo $inscomment['Instructor']['speak_japanese'] == 1 ? "Yes" : "No"; ?></td>
                 <td style="text-align: center;"><?php echo $inscomment['Instructor']['instructor_url']; ?></td>

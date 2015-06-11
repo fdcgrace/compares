@@ -26,7 +26,7 @@ class InscommentsController extends AppController {
 
     public function view($id = null) {
         if (!$this->Inscomment->exists($id)) {
-            throw new NotFoundException(__('Invalid instructor'));
+            throw new NotFoundException(__('Invalid comment information'),'failflash');
         }
         $options = array('conditions' => array('Inscomment.' . $this->Inscomment->primaryKey => $id));
         $this->set('inscomments', $this->Inscomment->find('first', $options));
@@ -36,42 +36,42 @@ class InscommentsController extends AppController {
     public function delete($id = null, $insId = null) {
 
         if (!$id) {
-            $this->Session->setFlash(_('Invalid Inscomment Id.'),'failflash');
+            $this->Session->setFlash(_('Invalid comment Id'),'failflash');
             $this->redirect(array('action'=>'index'));
         }
          
         $this->Inscomment->id = $id;
         if (!$this->Inscomment->exists()) {
-            $this->Session->setFlash(_('Invalid Inscomment Id provided'),'failflash');
+            $this->Session->setFlash(_('Invalid comment Id'),'failflash');
             $this->redirect(array('action'=>'index'));
         }
 
         if ($this->Inscomment->delete($id)) {
-            $this->Session->setFlash(__('Inscomment deleted'),'successflash');
+            $this->Session->setFlash(__('Comment deleted'),'successflash');
             $this->redirect(array('action' => 'inscomment_list', $insId));
         }
 
-        $this->Session->setFlash(__('Inscomment was not deleted'),'failflash');
+        $this->Session->setFlash(__('Comment was not deleted'),'failflash');
         $this->redirect(array('action' => 'index'));
     }
      
     public function activate($id = null, $listId = null) {
          
         if (!$id) {
-            $this->Session->setFlash(_('Inscomment was not found.'),'infoflash');
+            $this->Session->setFlash(_('Comment was not found.'),'failflash');
             $this->redirect(array('action'=>'index'));
         }
          
         $this->Inscomment->id = $id;
         if (!$this->Inscomment->exists()) {
-            $this->Session->setFlash(_('Inscomment was not found.'),'infoflash');
+            $this->Session->setFlash(_('Comment was not found.'),'failflash');
             $this->redirect(array('action'=>'index'));
         }
         if ($this->Inscomment->saveField('approval', 1)) {
-            $this->Session->setFlash(__('Inscomment Approved.'),'successflash');
+            $this->Session->setFlash(__('Comment Approved.'),'successflash');
             $this->redirect(array('action' => 'Inscomment_list', $listId));
         }
-        $this->Session->setFlash(__('Inscomment was not approved.'),'failflash');
+        $this->Session->setFlash(__('Comment was not approved.'),'failflash');
         $this->redirect(array('action' => 'index'));
     }
 }
